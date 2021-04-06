@@ -1,5 +1,10 @@
+html,body, #root { height: 100%; margin: 0px; padding: 0px; }
+
 .App {
   text-align: center;
+  height: 100%;
+  display:flex;
+  flex-flow: column nowrap;
 }
 
 .App-logo {
@@ -35,4 +40,88 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* DrawingLists, ul, DrawingList */
+
+.DrawingLists ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0.0em 2em;
+
+}
+.DrawingLists ul .DrawingList{
+  background: #fdfdfd;
+  padding: 0.5em 0;
+  border-bottom: 1px solid #e2e2e2;
+  cursor: pointer;
+  transition-duration: 300ms;
+  font-size: 1.2em;
+  font-weight: 600;
+  
+
+}
+.DrawingLists ul .DrawingList:hover{
+  background: rgb(236, 236, 236);
+}
+.DrawingLists ul .DrawingList:active{
+ 
+  transition-duration: 00ms;
+  background: rgb(212, 212, 212);
+  transform: scale(1.5);
+}
+.DrawingList a{
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+
+.DrawingForm form{
+
+  display: flex;
+  padding: 0.5em 1em;
+  
+}
+.DrawingForm form input[type="text"]{
+  width: 100%;
+  border:1px solid rgba(0, 0, 0, 0.318);
+  font-size: 1.5em;
+  padding: 0.25em 1.5em;
+  outline: none;
+  font-weight: 600;
+  border-radius: 10px;
+  color: #282c34;
+  margin: 0 1em;
+}
+.DrawingForm form input[type="text"]:focus{
+  box-shadow:inset 0 5px 5px rgba(0, 0, 0, 0.318);
+  border-radius: 10px;
+  /* text-shadow: 0 2px 5px rgba(0, 0, 0, 0.318); */
+  border:1px solid rgba(0, 0, 0, 0.13);
+}
+
+.DrawingForm form input[type="submit"]{
+  
+  border:1px solid rgba(0, 0, 0, 0.318);
+  font-size: 1.5em;
+  padding: 0.25em 1.5em;
+  outline: none;
+  font-weight: 600;
+  border-radius: 10px;
+  color: #282c34;
+
+  background: none;
+}
+.DrawingForm form input[type="submit"]:hover{
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.318);
+}
+
+.Drawing{
+  height: 100%;
+  margin:0 1em 1em 1em;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.318);
+  display: flex;
+  flex-flow: column nowrap;
+
 }
