@@ -2,7 +2,7 @@ import openSocket from "socket.io-client";
 import Rx from 'rxjs/Rx';
 
 
-const URL = "127.0.0.1:3001/"
+const URL = "https://chitraBackend.gultion.repl.co/"
 const {log} = console;
 const socket = openSocket(URL);
 
