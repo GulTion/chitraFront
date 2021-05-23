@@ -45,7 +45,8 @@ class App extends React.Component {
                 <Switch>
                 <Route exact path="/">
                     <h1>homePage</h1>
-                    <Link to="/auth" />
+                    <Link to="/auth">Auth</Link>
+                    <Link to="dashboard">DashBoard</Link>
                 </Route>
                 <Route path="/dashboard" >
                     <h1>{this.state.title}</h1>
