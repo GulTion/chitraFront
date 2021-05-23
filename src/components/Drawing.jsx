@@ -1,6 +1,9 @@
 import React, {Component,useState} from 'react'
 import Canvas from 'simple-react-canvas';
-import {publishLine,subscribeForPublishLine,getDrawingById,subscribeForAllPublishLine} from "./api"
+import {publishLine,subscribeForPublishLine,getDrawingById,subscribeForAllPublishLine} from "../api"
+
+import axios from "axios"
+import URL from "../URL"
 
 const {log, table} = console
 export default class Drawing extends Component {
@@ -9,11 +12,27 @@ export default class Drawing extends Component {
         this.state = {
             lines:[],
             info:{name:""},
-            brushColor:"black"
+            brushColor:"black",
+            name:"Loading....",
+            isFound:false
         }
     }
     componentDidMount(){
+        
         // log(this.props)
+        const id = window.location.href.split("/").pop()
+        log(id)
+        axios.post(`${URL}/drawing/get`, {id}).then(e=>{
+            const {data} = e;
+            log(data)
+            if(data.success){
+                this.setState({isFound:true,name:data.name});
+                log(data)
+            }else{
+                this.setState({name:"NOT FOUND"})
+            }
+        })
+
         subscribeForAllPublishLine(this.props.drawingId, (lineEvt)=>{
             // log(lineEvt)
             this.setState(prev=>{
@@ -28,13 +47,7 @@ export default class Drawing extends Component {
             })
         })
 
-        getDrawingById(window.location.pathname.split('/')[1],(info)=>{
-            log(info)
-            log(window.location.pathname.split('/')[1])
-            this.setState({
-                info:info
-            })
-        });
+        
 
 
 
@@ -47,33 +60,22 @@ export default class Drawing extends Component {
     
     render() {
 
-        return (this.props.drawing)
-            ? (
-              <div className="Drawing">
-                    {this.state.info.name}
+        return (<>
+                <h1>{this.state.name}</h1>
+             {this.state.isFound?<div className="Drawing">
+                
                     {/* <ColorBox onClick={color=>{this.setState({brushColor:color})}}/> */}
                     <Canvas brushColor={this.state.brushColor} onDraw={this.handleDraw} drawingEnabled={true} lines={this.state.lines}/>
-                </div>
+                </div>:null}
+                </>
                 
             )
-            : null;
+         
     }
 }
 
 
 
-function ColorBox({onClick}) {
-    const [colorList,setList] = useState(["#ff0000", "#ff00ff", "#f12ff1"])
-    return (
-        <div className="ColorBox">
-            <div className="colorList">
-                {colorList.map(e=>{
-                    return <div onClick={k=>onClick(e)} className="color" key={e} style={{background:e}}></div>
-                })}
-            </div>
-        </div>
-    )
-}
 
 // Canvas.defaultProps = {
 //     brushColor: '#000000',

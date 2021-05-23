@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import {createDrawing} from "./api"
-import NewAdd from "./NewAdd"
+import {createDrawing} from "../api"
+import NewAdd from "../NewAdd"
 
 export default class DrawingForm extends Component {
     state = {
@@ -10,7 +10,8 @@ export default class DrawingForm extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault();
-        createDrawing({name: this.state.name});
+        let id = localStorage.getItem("id");
+        createDrawing({name: this.state.name, key:atob(id)});
         this.setState({name: ""})
     }
     render() {

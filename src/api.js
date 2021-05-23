@@ -1,24 +1,25 @@
 import openSocket from "socket.io-client";
 import Rx from 'rxjs/Rx';
+import URL from "./URL"
 
 
-const URL = "https://chitraBackend.gultion.repl.co/"
 const {log} = console;
+const _key = atob(localStorage.getItem('id'))
 const socket = openSocket(URL);
 
-const subscribeForDrawings = (cb) => {
+// const subscribeForDrawings = (cb) => {
 
-    socket.on('drawing', drawing => cb(drawing));
-    socket.emit('subscribeForDrawings');
-}
+//     socket.on(`drawing:${_key}`, drawing => cb(drawing));
+//     socket.emit('subscribeForDrawings',{key:_key});
+// }
 
 const subscribeForDrawingsList = (cb) =>{
   socket.on('drawingList', drawing => cb(drawing));
-  socket.emit("subscribeForDrawingList")
+  socket.emit("subscribeForDrawingList", {key:_key})
 }
 
 const createDrawing = ({name,key}) => {
-    socket.emit('createDrawing', {name,key})
+    socket.emit('createDrawing', {name,key:_key})
 }
 
 const publishLine=(line)=>{
@@ -58,7 +59,8 @@ const getDrawingById = (id,cb)=>{
 
 
 export {
-  subscribeForDrawings,     createDrawing,  publishLine,
+  // subscribeForDrawings,     
+  createDrawing,  publishLine,
   subscribeForPublishLine,  getDrawingById, subscribeForDrawingsList,
   subscribeForAllPublishLine
 }

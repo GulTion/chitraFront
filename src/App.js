@@ -4,9 +4,13 @@ import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 
 import './App.css';
 
-import DrawingForm from "./DrawingForm"
-import DrawingList from "./DrawingList"
-import Drawing from "./Drawing"
+import DrawingForm from "./components/DrawingForm"
+import DrawingList from "./components/DrawingList"
+import Drawing from "./components/Drawing"
+import Auth from "./components/Auth"
+
+import store from "./Reducer/store"
+
 import db from "./db"
 
 const {log} = console
@@ -21,7 +25,8 @@ class App extends React.Component {
 
     }
     componentWillMount(){
-        this.setState({title:db.TITLE})
+        this.setState({title:db.TITLE});
+        log(store.getState())
     }
     
 
@@ -38,13 +43,20 @@ class App extends React.Component {
 
 
                 <Switch>
-                <Route exact path="/" >
+                <Route exact path="/">
+                    <h1>homePage</h1>
+                    <Link to="/auth" />
+                </Route>
+                <Route path="/dashboard" >
                     <h1>{this.state.title}</h1>
-                    <DrawingForm/>
+                    {/* <DrawingForm/> */}
                     < DrawingList onSelectDrawing = {e => {this.selectDrawing(e)}} />
                 </Route>
+                <Route path="/auth">
+                    <Auth />
+                </Route>
                 
-                <Route path="/:drawingId" render={e=>{
+                <Route path="/drawings/:drawingId" render={e=>{
                         return <>
                         <h1>{this.state.selectedDrawing.name}</h1>
                         <Drawing drawingId={e.match.params.drawingId} drawing={this.state.selectedDrawing}/>
