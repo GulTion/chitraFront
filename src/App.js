@@ -27,12 +27,14 @@ class App extends React.Component {
     componentWillMount(){
         this.setState({title:db.TITLE});
         log(store.getState())
+
     }
     
 
     selectDrawing = (drawing) => {
 
-        this.setState({selectedDrawing: drawing})
+        this.setState({selectedDrawing: drawing});
+        
 
     }
 
