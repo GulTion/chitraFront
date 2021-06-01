@@ -1,9 +1,13 @@
 import React, {Component,useState} from 'react'
 import Canvas from 'simple-react-canvas';
 import {publishLine,subscribeForPublishLine,getDrawingById,subscribeForAllPublishLine} from "../api"
-
+import {Link} from "react-router-dom"
 import axios from "axios"
 import URL from "../URL"
+
+import "./core.css"
+
+import NavBar from "./NavBar"
 
 const {log, table} = console
 export default class Drawing extends Component {
@@ -61,7 +65,13 @@ export default class Drawing extends Component {
     render() {
 
         return (<>
-                <h1>{this.state.name}</h1>
+                {/* <h1>{this.state.name}</h1> */}
+                {NavBar({
+                    title:this.state.name,
+                    btn:[<Link to="/dashboard" className="btn">
+                    dashBoard
+                  </Link>]
+                })}
              {this.state.isFound?<div className="Drawing">
                 
                     {/* <ColorBox onClick={color=>{this.setState({brushColor:color})}}/> */}

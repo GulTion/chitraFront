@@ -23,24 +23,30 @@ export default class DrawingList extends Component {
       query: "",
       name: "",
       isNew: false,
-      isAuth: true
+      isAuth: true,
+      status:"Loading ..."
     };
   }
 
   getDrawing() {
     subscribeForDrawingsList((drawing) => {
-      log("Getting List");
-      this.setState((prev) => ({ drawings: drawing, temp: drawing }));
+      log(drawing);
+      this.setState((prev) => ({ drawings: drawing, temp: drawing ,status:"No Drawing Found !"}));
     });
+
   }
 
+  
+
   componentDidMount() {
-    this.getDrawing();
+    
     axios
       .post(`${URL}/auth/check`, { key: atob(localStorage.getItem("id")) })
       .then((e) => {
         const { data } = e;
         if (data.success) {
+          this.getDrawing();
+          
         } else {
           this.setState({ isAuth: false });
         }
@@ -57,12 +63,9 @@ export default class DrawingList extends Component {
   render() {
     const drawingList = this.state.temp.map((drawing) => (
       <div
-        className="card m-1 w-auto shadow-sm drawingCard"
+        className="drawingCard card m-1 w-auto shadow-sm "
         key={drawing._id}
-        onClick={(evt) => {
-          this.props.onSelectDrawing(drawing);
-          log(drawing);
-        }}
+        
       >
         {this.state.redirect && <Redirect to="/auth" />}
         <div className="card-body ">
@@ -94,7 +97,7 @@ export default class DrawingList extends Component {
         {this.state.isAuth ? null : <Redirect to="/auth" />}
         <div className="row g-2 m-2">
           <div className="col">
-            <div className="form-floating">
+            <div className="form">
               <input
                 type="text"
                 className="form-control"
@@ -111,7 +114,7 @@ export default class DrawingList extends Component {
                   });
                 }}
               />
-              <label for="floatingInputGrid">Search</label>
+   
             </div>
           </div>
           <div className="col-3 display-6 rounded">
@@ -152,7 +155,7 @@ export default class DrawingList extends Component {
         )}
 
         <div className="d-flex flex-wrap justify-content-center">
-          {drawingList.length ? drawingList : <h1>LOADING ...</h1>}
+          {drawingList.length ? drawingList : <h1>{this.state.status}</h1>}
         </div>
       </div>
     );

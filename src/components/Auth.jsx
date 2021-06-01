@@ -7,6 +7,8 @@ import NavBar from "./NavBar";
 import "./core.css";
 import store from "./store";
 
+const {log} = console
+
 export default class Auth extends Component {
   constructor(props) {
     super(props);
@@ -23,7 +25,7 @@ export default class Auth extends Component {
     axios.post(`${URL}/auth/${type}`, { email, password }).then((e) => {
       const { data } = e;
       if (data.success) {
-        localStorage.setItem("id", btoa(data.id));
+        localStorage.setItem("id", btoa(data.id))
         this.setState({ success: true });
         // window.location.pathname = '/dashboard'
         // console.log(data)

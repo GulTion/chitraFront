@@ -123,6 +123,8 @@ html,body, #root { height: 100%; margin: 0px; padding: 0px; }
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.318);
   display: flex;
   flex-flow: column nowrap;
+  background-color: #00DBDE;
+background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
 
 }
 
