@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
 import {Link, Redirect} from "react-router-dom";
 
-import {subscribeForDrawings, subscribeForDrawingsList,createDrawing} from "../api"
+import {subscribeForDrawings, subscribeForDrawingsList,createDrawing, deleteDrawing} from "../api"
 import axios from "axios"
 import URL from "../URL"
+import "./core.css"
 
 const {log} = console
 export default class DrawingList extends Component {
@@ -29,6 +30,7 @@ export default class DrawingList extends Component {
             this.setState(prev => ({drawings: drawing, temp: drawing}))
         })
     }
+ 
 
     componentDidMount() {
         
@@ -58,7 +60,7 @@ export default class DrawingList extends Component {
             .temp
             .map(drawing => (
                 <div
-                    className="card m-1 w-auto shadow-sm"
+                    className="card m-1 w-auto shadow-sm drawingCard"
                     key={drawing._id}
                     onClick={(evt) => {
                     this
@@ -67,11 +69,13 @@ export default class DrawingList extends Component {
                     log(drawing)
                 }}>
                     {this.state.redirect &&< Redirect to = "/auth" />}
-                    <div className="card-body">
+                    <div className="card-body ">
                         <h5 className="card-title">{drawing.name}</h5>
                         <Link
                             className="card-text btn btn-info text-light"
                             to={`/drawings/${drawing._id}`}>{"Draw"}</Link>
+                        <button onClick={e=>deleteDrawing(drawing._id,k=>{log(k)})} className="btn btn-danger mx-1">DELETE</button>
+                        
                     </div>
                     <h6 className="card-footer text-dimmed">{new Date(drawing.timestamp).toLocaleString()}</h6>
                 </div>

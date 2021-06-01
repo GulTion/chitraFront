@@ -61,7 +61,7 @@ class App extends React.Component {
                 
                 <Route path="/drawings/:drawingId" render={e=>{
                         return <>
-                        <h1>{this.state.selectedDrawing.name}</h1>
+                        {/* <h1>{this.state.selectedDrawing.name}</h1> */}
                         <Drawing drawingId={e.match.params.drawingId} drawing={this.state.selectedDrawing}/>
                         </>
                     }}>

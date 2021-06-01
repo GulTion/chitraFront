@@ -1,0 +1,9 @@
+.drawingCard{
+    /* transition-duration: 0.3s; */
+}
+.drawingCard:hover{
+    /* transform:perspective(200px) rotateX(-10deg) translateY(-5px); */
+    /* transition-duration: 05s; */
+    outline:4px rgb(0, 162, 255) solid;
+
+}

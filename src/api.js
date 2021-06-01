@@ -1,6 +1,7 @@
 import openSocket from "socket.io-client";
 import Rx from 'rxjs/Rx';
 import URL from "./URL"
+import axios from "axios"
 
 
 const {log} = console;
@@ -57,10 +58,17 @@ const getDrawingById = (id,cb)=>{
   socket.emit('getDrawingById',id);
 }
 
+const deleteDrawing = (id, cb)=>{
+  axios.post("/drawing/delete" ,{id,key:_key}).then(e=>{
+    // log(e);
+    cb(e)
+  })
+}
+
 
 export {
   // subscribeForDrawings,     
   createDrawing,  publishLine,
   subscribeForPublishLine,  getDrawingById, subscribeForDrawingsList,
-  subscribeForAllPublishLine
+  subscribeForAllPublishLine, deleteDrawing
 }
