@@ -40,17 +40,7 @@ export default class DrawingList extends Component {
 
   componentDidMount() {
     
-    axios
-      .post(`${URL}/auth/check`, { key: atob(localStorage.getItem("id")) })
-      .then((e) => {
-        const { data } = e;
-        if (data.success) {
-          this.getDrawing();
-          
-        } else {
-          this.setState({ isAuth: false });
-        }
-      });
+   
 
     // subscribeForDrawings((drawing) => {     log('drawing is added') log(drawing)
     //    if(drawing.operationType=="insert"){ this.setState(prev => ({
@@ -58,6 +48,19 @@ export default class DrawingList extends Component {
     // if(drawing.operationType=="delete"){    this.setState(prev => ({
     // drawings: prev.drawings.filter(e=>e._id!==drawing.documentKey._id)
     // }))     } });
+  }
+  componentWillMount(){
+    axios
+    .post(`${URL}/auth/check`, { key: atob(localStorage.getItem("id")) })
+    .then((e) => {
+      const { data } = e;
+      if (data.success) {
+        this.getDrawing();
+        
+      } else {
+        this.setState({ isAuth: false });
+      }
+    });
   }
 
   render() {
@@ -92,48 +95,13 @@ export default class DrawingList extends Component {
         </h6>
       </div>
     ));
+    
     return (
       <div>
         {this.state.isAuth ? null : <Redirect to="/auth" />}
-        <div className="row g-2 m-2">
-          <div className="col">
-            <div className="form">
-              <input
-                type="text"
-                className="form-control"
-                id="floatingInputGrid"
-                placeholder="Search"
-                value={this.state.query}
-                onChange={(e) => {
-                  const { value } = e.target;
-                  this.setState({
-                    query: value,
-                    temp: this.state.drawings.filter(
-                      (d) => d.name.toLowerCase().indexOf(value) != -1
-                    )
-                  });
-                }}
-              />
-   
-            </div>
-          </div>
-          <div className="col-3 display-6 rounded">
-            <div
-              className=" bg-dark text-light rounded"
-              onClick={(e) => {
-                if (this.state.isNew) {
-                  createDrawing({ name: this.state.name });
-                  this.getDrawing();
-                }
-                this.setState({ isNew: !this.state.isNew, name: "" });
-              }}
-            >
-              {!this.state.isNew ? "NEW" : "SAVE"}
-            </div>
-          </div>
-        </div>
+        
 
-        {this.state.isNew && (
+        {/* {this.state.isNew && (
           <div className="row m-1">
             <div className="col">
               <div className="form-floating">
@@ -152,9 +120,30 @@ export default class DrawingList extends Component {
               </div>
             </div>
           </div>
-        )}
+        )} */}
 
-        <div className="d-flex flex-wrap justify-content-center">
+          <div className="container mb-2 form">
+              <input
+                type="text"
+                className="form-control"
+                id="floatingInputGrid"
+                placeholder="Search"
+                value={this.state.query}
+                onChange={(e) => {
+                  const { value } = e.target;
+                  this.setState({
+                    query: value,
+                    temp: this.state.drawings.filter(
+                      (d) => d.name.toLowerCase().indexOf(value) != -1
+                    )
+                  });
+                }}
+              />
+   
+            </div>
+
+        <div className="d-flex flex-wrap container justify-content-center">
+
           {drawingList.length ? drawingList : <h1>{this.state.status}</h1>}
         </div>
       </div>

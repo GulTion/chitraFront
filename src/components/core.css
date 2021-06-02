@@ -12,6 +12,10 @@
   font-weight: 600;
 }
 
+.drawingCard .card-footer{
+  background: rgba(255,255,255,0.3);
+  font-size: 0.9em;
+}
 
 
 .Auth {
@@ -25,8 +29,8 @@
 }
 .DashBoard {
   height: 100%;
-  background-color: #4158D0;
-  background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+  background-color: #FF3CAC;
+  background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
   
 }
 

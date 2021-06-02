@@ -9,6 +9,7 @@ import "./core.css"
 
 import NavBar from "./NavBar"
 
+
 const {log, table} = console
 export default class Drawing extends Component {
     constructor(props){
@@ -31,7 +32,8 @@ export default class Drawing extends Component {
             log(data)
             if(data.success){
                 this.setState({isFound:true,name:data.name});
-                log(data)
+                // log(data)
+                document.title = `${data.name} - Chitr`
             }else{
                 this.setState({name:"NOT FOUND"})
             }
