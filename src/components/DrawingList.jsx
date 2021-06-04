@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { Component,useState } from "react";
 import { Link, Redirect } from "react-router-dom";
-
+import NavBar from "./NavBar"
 import {
   subscribeForDrawings,
   subscribeForDrawingsList,
@@ -30,10 +30,17 @@ export default class DrawingList extends Component {
 
   getDrawing() {
     subscribeForDrawingsList((drawing) => {
-      log(drawing);
+      log('getDrawing is running');
       this.setState((prev) => ({ drawings: drawing, temp: drawing ,status:"No Drawing Found !"}));
     });
 
+  }
+  getAllList(){
+    axios.post(`${URL}/drawing/all`).then(e=>{
+      log(e)
+      const {data:{list}} = e
+      this.setState((prev) => ({ drawings: list, temp: list ,status:"No Drawing Found !"}));
+    })
   }
 
   
@@ -55,7 +62,7 @@ export default class DrawingList extends Component {
     .then((e) => {
       const { data } = e;
       if (data.success) {
-        this.getDrawing();
+        this.getAllList();
         
       } else {
         this.setState({ isAuth: false });
@@ -63,40 +70,68 @@ export default class DrawingList extends Component {
     });
   }
 
+  deleteDrawing({id}){
+    deleteDrawing(id, (k) => {
+      log(k);
+      this.getAllList();
+    })
+  }
+  DrawingElement({drawing}){
+    // const [show, setShow] = useState(true)
+    return <div
+          className="drawingCard card m-1 w-auto shadow-sm "
+          key={drawing._id}
+          
+        >
+          {this.state.redirect && <Redirect to="/auth" />}
+          <div className="card-body ">
+            <h5 className="card-title">{drawing.name}</h5>
+            <Link
+              className="card-text btn btn-info text-light"
+              to={`/drawings/${drawing._id}`}
+            >
+              {"Draw"}
+            </Link>
+            <button
+              onClick={(e) =>
+                this.deleteDrawing({id:drawing._id})
+              }
+              className="btn btn-danger mx-1"
+            >
+              DELETE
+            </button>
+          </div>
+          <h6 className="card-footer text-dimmed" onClick={()=>alert(drawing.key)}>
+           show key
+          </h6>
+          <h6 className="card-footer text-dimmed">
+            {new Date(drawing.timestamp).toLocaleString()}
+          </h6>
+        </div>
+  }
+
   render() {
     const drawingList = this.state.temp.map((drawing) => (
-      <div
-        className="drawingCard card m-1 w-auto shadow-sm "
-        key={drawing._id}
-        
-      >
-        {this.state.redirect && <Redirect to="/auth" />}
-        <div className="card-body ">
-          <h5 className="card-title">{drawing.name}</h5>
-          <Link
-            className="card-text btn btn-info text-light"
-            to={`/drawings/${drawing._id}`}
-          >
-            {"Draw"}
-          </Link>
-          <button
-            onClick={(e) =>
-              deleteDrawing(drawing._id, (k) => {
-                log(k);
-              })
-            }
-            className="btn btn-danger mx-1"
-          >
-            DELETE
-          </button>
-        </div>
-        <h6 className="card-footer text-dimmed">
-          {new Date(drawing.timestamp).toLocaleString()}
-        </h6>
-      </div>
+      this.DrawingElement({drawing, getAllList:this.getAllList})
     ));
     
     return (
+      <>
+      {NavBar({title:"DashBoard", btn:[
+          <Link to="/" className="btn">{"< Back"}</Link>,
+          <div className={"btn"} onClick={async ()=>{
+            let name = prompt("Enter the Drawing Name: ");
+            let key = prompt("Enter the Drawing Name (leave blank for public): ");
+            await new Promise((res,rej)=>{
+              createDrawing({name,key});
+              res()
+            })
+            await this.getAllList();
+          }}>
+            + NEW
+        
+          </div>
+        ], color:true})}
       <div>
         {this.state.isAuth ? null : <Redirect to="/auth" />}
         
@@ -146,7 +181,8 @@ export default class DrawingList extends Component {
 
           {drawingList.length ? drawingList : <h1>{this.state.status}</h1>}
         </div>
-      </div>
+      </div></>
     );
   }
 }
+
