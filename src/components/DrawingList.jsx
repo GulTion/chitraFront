@@ -36,7 +36,7 @@ export default class DrawingList extends Component {
 
   }
   getAllList(){
-    axios.post(`${URL}/drawing/all`).then(e=>{
+    axios.post(`${URL}/drawing/all`,{id: atob(localStorage.getItem("id")) }).then(e=>{
       log(e)
       const {data:{list}} = e
       this.setState((prev) => ({ drawings: list, temp: list ,status:"No Drawing Found !"}));
@@ -179,7 +179,7 @@ export default class DrawingList extends Component {
 
         <div className="d-flex flex-wrap container justify-content-center">
 
-          {drawingList.length ? drawingList : <h1>{this.state.status}</h1>}
+          {drawingList.length ? drawingList : <h1 className="text-white">{this.state.status}</h1>}
         </div>
       </div></>
     );
