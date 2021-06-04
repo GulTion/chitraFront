@@ -19,7 +19,7 @@ const subscribeForDrawingsList = (cb) => {
 };
 
 const createDrawing =async ({ name, key }) => {
-  await socket.emit("createDrawing", { name, key: key });
+  await socket.emit("createDrawing", { name, key: key,user:_key });
 };
 
 const publishLine = (line) => {

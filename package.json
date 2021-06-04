@@ -2,7 +2,7 @@
     "name": "creap",
     "version": "0.1.0",
     "proxy": "https://chitraBackend.gultion.repl.co/",
-    "homepage": "http://chitr.gultion.me",
+    "homepage": "https://chitr.gultion.me",
     "private": true,
     "dependencies": {
         "@testing-library/jest-dom": "^4.2.4",
@@ -25,7 +25,7 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
-        "prod":"yarn build && rm -r docs/ && mv build docs/",
+        "prod":"yarn build && rm -r docs/ && mv build docs/ && cd docs && echo 'chitr.gultion.me' > CNAME ",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
     },
