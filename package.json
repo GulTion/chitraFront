@@ -5,15 +5,20 @@
     "homepage": "https://chitr.gultion.me",
     "private": true,
     "dependencies": {
+        "@babel/plugin-transform-react-jsx": "^7.14.5",
         "@testing-library/jest-dom": "^4.2.4",
         "@testing-library/react": "^9.3.2",
         "@testing-library/user-event": "^7.1.2",
         "axios": "^0.21.1",
+        "impress-react-component": "^1.0.4",
         "javascript-time-ago": "^2.3.5",
+        "node-sass": "^6.0.0",
         "react": "^16.12.0",
         "react-dom": "^16.12.0",
+        "react-impressjs": "^1.1.0",
         "react-router-dom": "^5.2.0",
         "react-scripts": "3.2.0",
+        "reactjs-popup": "^2.0.4",
         "redux": "^4.1.0",
         "redux-thunk": "^2.3.0",
         "rxjs": "^5.4.2",
@@ -25,13 +30,16 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
-        "prod":"yarn build && rm -r docs/ && mv build docs/ && cd docs && echo 'chitr.gultion.me' > CNAME ",
+        "prod": "npm run build && rm -r docs/ && mv build docs/ && cd docs && echo 'chitr.gultion.me' > CNAME ",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
     },
     "eslintConfig": {
         "extends": "react-app"
     },
+    "plugins": [
+        "@babel/plugin-transform-react-jsx"
+    ],
     "browserslist": {
         "production": [
             ">0.2%",

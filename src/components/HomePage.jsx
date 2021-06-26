@@ -3,9 +3,14 @@ import React,{useState} from "react";
 import NavBar from "./NavBar";
 import axios from "axios"
 import URL from "../URL"
+import {usePost} from "./useFul"
+import "./HomePage.css"
+import Present from "./Present";
 
 const HomePage = () => {
-  const [l,setL] = useState(false)
+  const [l,setL] = useState(false);
+
+ 
   axios
   .post(`${URL}/auth/check`, { key: atob(localStorage.getItem("id")) })
   .then((e) => {
@@ -17,7 +22,7 @@ const HomePage = () => {
       setL(false)
     }
   });
-
+document.title = "Chitr"
   return (
     <div className={"HomePage"}>
       {NavBar({
@@ -31,6 +36,7 @@ const HomePage = () => {
         </Link>
         ]
       })}
+      <Present/>
     </div>
   );
 };

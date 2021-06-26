@@ -10,6 +10,9 @@ import {
 import axios from "axios";
 import URL from "../URL";
 import "./core.css";
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+import NewAdder from "./NewAdder";
 
 const { log } = console;
 export default class DrawingList extends Component {
@@ -24,7 +27,8 @@ export default class DrawingList extends Component {
       name: "",
       isNew: false,
       isAuth: true,
-      status:"Loading ..."
+      status:"Loading ...",
+
     };
   }
 
@@ -39,6 +43,7 @@ export default class DrawingList extends Component {
     axios.post(`${URL}/drawing/all`,{id: atob(localStorage.getItem("id")) }).then(e=>{
       log(e)
       const {data:{list}} = e
+      document.title = `${list.length} Drawings`
       this.setState((prev) => ({ drawings: list, temp: list ,status:"No Drawing Found !"}));
     })
   }
@@ -57,6 +62,7 @@ export default class DrawingList extends Component {
     // }))     } });
   }
   componentWillMount(){
+ 
     axios
     .post(`${URL}/auth/check`, { key: atob(localStorage.getItem("id")) })
     .then((e) => {
@@ -101,9 +107,9 @@ export default class DrawingList extends Component {
               DELETE
             </button>
           </div>
-          <h6 className="card-footer text-dimmed" onClick={()=>alert(drawing.key)}>
+          {/* <h6 className="card-footer text-dimmed" onClick={()=>alert(drawing.key)}>
            show key
-          </h6>
+          </h6> */}
           <h6 className="card-footer text-dimmed">
             {new Date(drawing.timestamp).toLocaleString()}
           </h6>
@@ -120,20 +126,33 @@ export default class DrawingList extends Component {
       {NavBar({title:"DashBoard", btn:[
           <Link to="/" className="btn">{"< Back"}</Link>,
           <div className={"btn"} onClick={async ()=>{
-            let name = prompt("Enter the Drawing Name: ");
-            let key = prompt("Enter the Drawing Name (leave blank for public): ");
-            await new Promise((res,rej)=>{
-              createDrawing({name,key});
-              res()
-            })
-            await this.getAllList();
+            this.setState({isNew:true})
+            // let name = prompt("Enter the Drawing Name: ");
+            // let key = prompt("Enter the Drawing Name (leave blank for public): ");
+            // await new Promise((res,rej)=>{
+            //   createDrawing({name,key});
+            //   res()
+            // })
+            // await this.getAllList();
           }}>
             + NEW
         
           </div>
         ], color:true})}
+        <Popup onClose={()=>this.setState({isNew:false})} open={this.state.isNew}>
+          <NewAdder 
+          onClose={()=>this.setState({isNew:false})}
+          onSave={async (name)=>{
+                       await new Promise((res,rej)=>{
+              createDrawing({name,key:""});
+              res()
+            })
+            await this.getAllList();
+          }}/>
+          </Popup>
       <div>
         {this.state.isAuth ? null : <Redirect to="/auth" />}
+
         
 
         {/* {this.state.isNew && (
