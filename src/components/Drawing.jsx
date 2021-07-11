@@ -1,5 +1,5 @@
 import React, {Component,useState} from 'react'
-import Canvas from 'simple-react-canvas';
+import Canvas from './Canvas';
 import {publishLine,subscribeForPublishLine,getDrawingById,subscribeForAllPublishLine} from "../api"
 import {Link} from "react-router-dom"
 import axios from "axios"
@@ -79,6 +79,7 @@ export default class Drawing extends Component {
                     {/* <ColorBox onClick={color=>{this.setState({brushColor:color})}}/> */}
                     <Canvas brushColor={this.state.brushColor} onDraw={this.handleDraw} drawingEnabled={true} lines={this.state.lines}/>
                 </div>:null}
+                
                 </>
                 
             )

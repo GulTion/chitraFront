@@ -13,7 +13,7 @@ import HomePage from "./components/HomePage";
 import DashBoard from "./components/DashBoard";
 import NavBar from "./components/NavBar";
 import store from "./Reducer/store";
-
+import ExcaliDraw from "./components/ExcaliDraw";
 import db from "./db";
 
 const { log } = console;
@@ -63,7 +63,11 @@ class App extends React.Component {
                   </>
                 );
               }}
-            ></Route>
+            ></Route> 
+
+            <Route path="/new/drawings/:drawingId" render={e=> <ExcaliDraw  drawingId={e.match.params.drawingId}/>}>
+             
+            </Route>
           </Switch>
         </div>
       </Router>

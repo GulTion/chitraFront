@@ -6,6 +6,7 @@
     "private": true,
     "dependencies": {
         "@babel/plugin-transform-react-jsx": "^7.14.5",
+        "@excalidraw/excalidraw": "^0.8.0",
         "@testing-library/jest-dom": "^4.2.4",
         "@testing-library/react": "^9.3.2",
         "@testing-library/user-event": "^7.1.2",
