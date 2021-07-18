@@ -7,7 +7,7 @@ const Heading = React.memo(({heading})=>{
 })
 
 const Close = React.memo(()=>{
-    return <div className="_Close">Close</div>
+    return <img src={I.close} alt={""} className="_Close"/>
 })
 
 export default function Header(){

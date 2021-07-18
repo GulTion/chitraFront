@@ -5,7 +5,7 @@ import I from "./Icons/"
 const Tabs = ({tabList})=>{
     return <div className="d-flex flex-row _Tabs">
         {tabList.map((e,i)=>{
-            return <div className={`d-flex flex-row align-items-center _Tab _Tab_${i}`} onClick={e.onClick}>
+            return <div className={`d-flex flex-row justify-content-center align-items-center _Tab`} onClick={e.onClick}>
                 <img src={e.icon} alt={e.text}/>
                 {e.text}
             </div>
@@ -18,9 +18,15 @@ const Input = ({onChange, value, onBlur})=>{
 }
 
 const UnRedo = ({onUndo, onRedo})=>{
-    return <div className="_UnRedo">
-        <img src={I.undo} alt={"undo"} onClick={onUndo}/>
-        <img src={I.redo} alt={"redo"} onClick={onRedo}/>
+    return <div className="_UnRedo d-flex flex-row _Tabs">
+        <div className={`d-flex flex-row justify-content-center align-items-center _Tab`} onClick={onUndo}>
+                <img src={I.undo} alt={"undo"}/>
+                {"Undo"}
+            </div>
+            <div className={`d-flex flex-row justify-content-center align-items-center _Tab`} onClick={onRedo}>
+                <img src={I.redo} alt={"Redo"}/>
+                {"Redo"}
+            </div>
     </div>
 }
 
@@ -33,9 +39,9 @@ export default function Tool(){
         { icon:I.profile, text:"Profile" , onClick:()=>{}},
         { icon:I.website, text:"Website" , onClick:()=>{}},
 ]
-    return (<div className="d-flex justify-content-between _Tool">
+    return (<div className="d-flex justify-content-between align-items-center _Tool">
         <Input value={value} onChange={(e)=>setValue(e.target.value)}/>
         <Tabs tabList={TabData}/>
-        {/* <UnRedo onUndo={()=>{}} onRedo={()=>{}}/> */}
+        <UnRedo onUndo={()=>{}} onRedo={()=>{}}/>
     </div>)
 }

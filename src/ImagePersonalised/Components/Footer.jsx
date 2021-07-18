@@ -8,7 +8,7 @@ const Footing = ({heading})=>{
 
 const Buttons = ({onDiscard, onSave})=>{
     return <div className="d-flex flex-row _Buttons">
-        <div className="_Discard">Dicard</div>
+        <div className="_Discard">Discard</div>
         <div className="d-flex flex-row align-items-center _Save">
             Save<img src={I.save} alt={"Save"} />
         </div>
