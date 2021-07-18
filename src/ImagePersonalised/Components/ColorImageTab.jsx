@@ -11,7 +11,7 @@ function OneTab({text, icon,activeIcon, isActive, onClick,isSeleted}){
     </div>)
 }
 
-export default function ColorImageTab({}) {
+export default function ColorImageTab() {
     const [active,setActive] = useState(0);
     const TabIndex = {
         0:<ColorTab />,
@@ -20,8 +20,8 @@ export default function ColorImageTab({}) {
 
     return (<div className="_ColorImageTab">
         <div className="d-flex _Tab">
-            <OneTab isSeleted={true} text="Color" icon={I.whiteDrop} activeIcon={I.colorDrop} isActive={active==0} onClick={()=>setActive(0)}></OneTab>
-            <OneTab text="Image" icon={I.whiteImage} activeIcon={I.colorImage} isActive={active==1} onClick={()=>setActive(1)}></OneTab>
+            <OneTab isSeleted={true} text="Color" icon={I.whiteDrop} activeIcon={I.colorDrop} isActive={active===0} onClick={()=>setActive(0)}></OneTab>
+            <OneTab text="Image" icon={I.whiteImage} activeIcon={I.colorImage} isActive={active===1} onClick={()=>setActive(1)}></OneTab>
         </div>
         <div className="_TabContent">
            {TabIndex[active]}

@@ -22,6 +22,10 @@ import add from "./ico/add.svg";
 import upload from "./ico/upload.svg";
 import search from "./ico/search.svg";
 import dummy from "./ico/dummy.png";
+import refresh from "./ico/refresh.svg";
+import down1 from "./ico/down1.svg";
+import link from "./ico/link.svg";
+import unlink from "./ico/unlink.svg";
 
 export default {
   colorCheck,
@@ -48,4 +52,8 @@ export default {
   upload,
   search,
   dummy,
+  refresh,
+  down1,
+  link,
+  unlink,
 };

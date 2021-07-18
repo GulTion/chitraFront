@@ -370,3 +370,185 @@
 ._ImageActive{
   border: 0.260vw solid #e72870 !important;
 }
+
+._ChangeImage{
+  margin-top: 0.781vw;
+  border: solid 0.052vw #4d4d4d;
+  background-color: #3d3d3d;
+  border-radius: 0.260vw;
+}
+._ChangeImage ._Img{
+  width: 7.396vw;
+  height: 4.167vw;
+  border-radius: 0.260vw;
+  
+
+} 
+._ChangeImage ._ChangeButtonFrame{
+  width: 100%;
+  
+}
+._ChangeImage ._ChangeButtonFrame img{
+
+}
+
+._ChangeImage ._ChangeButtonFrame ._ChangeButton{
+  border-radius: 1.302vw;
+  font-size: 0.729vw;
+  padding: 0.260vw 0.521vw;
+  cursor: pointer;
+  background-image: linear-gradient(81deg, #e72870 1%, #e76161 100%);
+}
+._ChangeImage ._ChangeButtonFrame ._ChangeButton img {
+  width: 0.781vw;
+  margin-left: 0.521vw;
+}
+
+._MiniInput{
+  font-size: 0.729vw;
+  
+}
+
+._MiniInput ._InputFrame{
+    margin-top: 0.260vw;
+    width: 5.208vw;
+    
+    background: #242424;
+    height: 1.563vw;
+    border-radius: 0.260vw ;
+    box-shadow: 0 0 0.521vw 0 rgba(0, 0, 0, 0.2);
+}
+._MiniInput ._InputFrame input{
+  width: 100%;
+  font-size: 0.729vw;
+  outline: none;
+  background: transparent;
+  border: none;
+  height: 100%;
+  padding:0.260vw 0.521vw;
+  color: white;
+}
+._MiniInput ._UpDownButtons{
+  margin-right: 0.521vw;
+}
+._MiniInput ._UpDownButtons img{
+    width: 0.521vw;
+    margin: 0.130vw;
+    cursor: pointer;
+}
+._MiniInput ._UpDownButtons ._Down{
+  transform: rotateZ(180deg) translateX(0.0vw);
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+._ImageSettings ._WidthHeight{
+  margin-top: 1.042vw;
+}
+._LinkUnlink{
+  
+  margin: 0 0.401vw;
+  padding: 0.321vw;
+  
+}
+._LinkUnlink img{
+  width: 1.042vw;
+  height: 1.042vw;
+  cursor: pointer;
+}
+
+
+._FrameInput{
+   font-size: 0.729vw;
+}._FrameInput ._InputWrap{
+  margin-top: 0.260vw;
+}
+._FrameInput ._InputWrap ._OuterShape{
+  width: 1.563vw;
+  height: 1.563vw;
+  /* background: red; */
+  margin: 0 0.260vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+._FrameInput ._InputWrap ._OuterShape ._InnerShape{
+  box-sizing: border-box;
+  width: 0.833vw;
+  height: 0.833vw;
+  border: 0.109vw solid #e6e6e6;
+}
+._FrameInput ._InputWrap ._OuterShapeActive{
+  background: #242424;
+  border-radius: 0.260vw;
+}
+._FrameInput ._InputWrap ._OuterShapeActive ._InnerShape{
+
+  border: 0.109vw solid #e7416a;
+}
+._FrameInput ._InputWrap ._OuterShape:hover ._InnerShape{
+  border: 0.109vw solid #e7416a;
+}
+
+._SliderInput {
+
+}
+._SliderInput ._Input{
+    height: 0.521vw;
+} 
+/* 
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  input[type='range'] {
+    overflow: visible;
+    width: 80px;
+    -webkit-appearance: none;
+    background-color: #242424;
+  }
+  
+  input[type='range']::-webkit-slider-runnable-track {
+    height: 0.521vw;
+    -webkit-appearance: none;
+    color:#242424;
+    margin-top: -1px;
+    position: relative;
+    overflow: visible !important;
+  }
+  
+  input[type='range']::-webkit-slider-thumb {
+    width:1.042vw;
+    -webkit-appearance: none;
+    
+    height: 1.042vw;
+    z-index: 2;
+    
+    cursor: ew-resize;
+    background:linear-gradient(53deg, #e72870 5%, #e76161 88%);;
+    box-shadow: -80px 0 0 80px #242424;
+  }
+
+}
+/** FF*/
+/**
+input[type="range"]::-moz-range-progress {
+background-color: #242424; 
+}
+input[type="range"]::-moz-range-track {  
+background-color: #9a905d;
+}
+/*
+input[type="range"]::-ms-fill-lower {
+background-color: #242424; 
+}
+input[type="range"]::-ms-fill-upper {  
+background-color: #9a905d;
+}
+**/

@@ -3,7 +3,7 @@ import React from "react";
 import CurrentColor from "./CurrentColor";
 import ColorImageTab from "./ColorImageTab";
 
-export default function ArtBoardSettings({}) {
+export default function ArtBoardSettings() {
   return (
     <div className="_ArtBoardSettings">
       <div className="_First">Choose Background:</div>
