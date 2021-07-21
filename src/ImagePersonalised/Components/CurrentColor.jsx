@@ -6,7 +6,7 @@ export default function CurrentColor({ isColor, value, name }) {
       <div
         className="_Color"
         style={
-          isColor ? { backgroundColor: value } : { backgroundImage: value }
+          isColor ? { backgroundColor: value } : { background: `url(${value})`,backgroundSize:"100%" }
         }
       ></div>
       <div className="d-flex flex-column justify-content-between _ColorDetails">

@@ -1,5 +1,6 @@
 import React from "react"
 import "./Index.css"
+import "./animation.css"
 import Header from "./Components/Header"
 import Tool from "./Components/Tool"
 import Main from "./Components/Main"

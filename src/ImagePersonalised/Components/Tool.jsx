@@ -1,6 +1,6 @@
 import React,{useState} from "react"
 import I from "./Icons/"
-
+import { addTextToCanvas } from "../functions"
  
 const Tabs = ({tabList})=>{
     return <div className="d-flex flex-row _Tabs">
@@ -33,7 +33,7 @@ const UnRedo = ({onUndo, onRedo})=>{
 export default function Tool(){
     const [value,setValue] = useState("")
     const TabData = [
-        { icon:I.text, text:"Text", onClick:()=>{} },
+        { icon:I.text, text:"Text", onClick:()=>{addTextToCanvas()} },
         { icon:I.image, text:"Image" , onClick:()=>{}},
         { icon:I.logo, text:"Logo" , onClick:()=>{}},
         { icon:I.profile, text:"Profile" , onClick:()=>{}},

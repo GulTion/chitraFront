@@ -11,20 +11,39 @@ function OneTab({text, icon,activeIcon, isActive, onClick,isSeleted}){
     </div>)
 }
 
-export default function ColorImageTab() {
-    const [active,setActive] = useState(0);
-    const TabIndex = {
-        0:<ColorTab />,
-        1:<ImageTab />
-    }
+export default function ColorImageTab(props) {
+   
+    const [active,setActive] = useState(props.ColorImageTab.type==="image"?1:0);
+    const [none, setNone] = useState(-1);
+    const TabIndex = [
+        <ColorTab {...props.ColorImageTab} chooseColor={props.ColorSelected}/>,
+        <ImageTab {...props.ColorImageTab} chooseImage={props.ColorSelected}/>
+    ]
 
     return (<div className="_ColorImageTab">
         <div className="d-flex _Tab">
-            <OneTab isSeleted={true} text="Color" icon={I.whiteDrop} activeIcon={I.colorDrop} isActive={active===0} onClick={()=>setActive(0)}></OneTab>
-            <OneTab text="Image" icon={I.whiteImage} activeIcon={I.colorImage} isActive={active===1} onClick={()=>setActive(1)}></OneTab>
+            <OneTab isSeleted={props.ColorImageTab.type==="color"} text="Color" icon={I.whiteDrop} activeIcon={I.colorDrop} isActive={active===0} onClick={()=>setActive(0)}></OneTab>
+            <OneTab isSeleted={props.ColorImageTab.type==="image"} text="Image" icon={I.whiteImage} activeIcon={I.colorImage} isActive={active===1} onClick={()=>setActive(1)}></OneTab>
         </div>
-        <div className="_TabContent">
-           {TabIndex[active]}
+        <div className="_TabContent" style={{position:"relative", height:"100%"}}>
+           {TabIndex.map((ele, index)=>{
+               return (<div className={`${active===index?"slide-in-right":"slide-out-left"}`}
+                
+               onAnimationEnd={e=>{
+                   if(active===index){
+                    setNone(index)
+                }else{
+                    
+                   setNone(active)
+
+                   }
+               }}  
+               
+               key={`_ColorImageTab_${index}`}
+               style={{display:!none===index?"none":"block",position:"absolute"}}
+             
+               >{ele}</div>)
+           })}
         </div>
     </div>)
 }
