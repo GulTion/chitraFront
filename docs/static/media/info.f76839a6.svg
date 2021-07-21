@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="26" height="24" viewBox="0 0 26 24">
+    <defs>
+        <style>
+            .cls-2{fill:none}.cls-3{fill:#e6e6e6}
+        </style>
+    </defs>
+    <g id="Layer_5" opacity="0.62" transform="translate(1)">
+        <path id="Path_19" d="M-1 0h26v24H-1z" class="cls-2"/>
+        <g id="Menu_ic_name_of_icon_24px" transform="translate(1)">
+            <path id="Path_19_1_" d="M-2 0h26v24H-2z" class="cls-2"/>
+        </g>
+        <path id="Path_19_2_" d="M-1 0h26v24H-1z" class="cls-2"/>
+        <g id="Group_24">
+            <path id="Path_29" d="M12 21.8a9.75 9.75 0 1 1 0-19.5 9.75 9.75 0 1 1 0 19.5zm0-18a8.3 8.3 0 1 0 8.3 8.3A8.344 8.344 0 0 0 12 3.8z" class="cls-3"/>
+        </g>
+        <path id="Path_30" d="M12 10a.773.773 0 0 1 .8.7v5.5a.773.773 0 0 1-.7.8.713.713 0 0 1-.7-.8v-5.5a.563.563 0 0 1 .6-.7z" class="cls-3"/>
+        <circle id="Ellipse_102" cx=".8" cy=".8" r=".8" class="cls-3" transform="translate(11.2 7)"/>
+    </g>
+</svg>

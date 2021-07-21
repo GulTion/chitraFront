@@ -3,10 +3,8 @@ import ObjectTab from "./ObjectTab"
 import I from "./Icons/"
 import ArtBoardSettings from "./ArtBoardSettings"
 import ImageSettings from "./ImageSettings"
+import Canvas from "./Canvas"
 
-const Canvas = () =>{
-    return <div className="_Canvas"></div>
-}
 const ObjectList = ()=>{
     return <div className="_ObjectList">
         <ObjectTab icon={I.image} title="Image Settings">

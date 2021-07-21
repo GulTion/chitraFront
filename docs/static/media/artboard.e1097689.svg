@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20.5" height="15.5" viewBox="0 0 20.5 15.5">
+    <defs>
+        <style>
+            .cls-2{fill:none;stroke:#e6e6e6;stroke-linecap:round;stroke-width:1.5px}
+        </style>
+    </defs>
+    <g id="Group_3960" transform="translate(-40.25 -22.25)">
+        <path id="Rectangle_803" fill="#e6e6e6" d="M0 0H13V8H0z" transform="translate(44 26)"/>
+        <g id="Group_3959">
+            <path id="Line_338" d="M0 0L0 14" class="cls-2" transform="translate(44 23)"/>
+            <path id="Line_339" d="M0 0L0 14" class="cls-2" transform="translate(57 23)"/>
+            <path id="Line_340" d="M19 0L0 0" class="cls-2" transform="translate(41 26)"/>
+            <path id="Line_341" d="M19 0L0 0" class="cls-2" transform="translate(41 34)"/>
+        </g>
+    </g>
+</svg>
