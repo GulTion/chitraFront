@@ -144,13 +144,19 @@
   font-size: 0.729vw;
 }
 ._ii ._ObjectTab ._TabName img {
-  margin: 0 0.729vw !important;
-  margin-left: 1.615vw !important;
+  height: 0.885vw;
+  width: 1vw;
+  margin: 0 0.729vw;
+  margin-left: 0 !important;
   cursor: default;
 }
 
 ._ii ._ObjectTab_Active {
+  position: sticky;
+  top: 0;
   background-color: #4d4d4d;
+  z-index: 3;
+  box-shadow: 0 5px 20px rgb(0 0 0 / 10%);
 }
 ._ii ._Up {
   transform: rotateZ(180deg);
@@ -520,6 +526,18 @@ input[type=number] {
   padding: 0 0.417vw;
   font-size: 12px;
 
+}
+._MiniToggle img{
+  width: 1.563vw;
+  height: 1.563vw;
+}
+._MiniToggle{
+  margin: 0 0.260vw;
+  cursor: pointer;
+}
+
+._FontButtons{
+  margin-top: 1.042vw;
 }
 
 /* 

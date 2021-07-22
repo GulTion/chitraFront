@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+    <g>
+        <text fill="#e6e6e6" font-family="Poppins-SemiBold, Poppins" font-size="16px" font-weight="600" transform="translate(9.5 4) translate(0 17)">
+            <tspan x="0" y="0">S</tspan>
+        </text>
+        <path fill="none" stroke="#e6e6e6" stroke-width="1.5px" d="M0 0L14 0" transform="translate(9.5 4) translate(-1.5 11.344)"/>
+    </g>
+</svg>

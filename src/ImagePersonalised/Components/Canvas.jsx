@@ -81,33 +81,6 @@ function Canvas(props){
             width,height
         })
 
-        var rect = new fabric.Rect({
-            left: 100,
-            top: 100,
-            fill: 'red',
-            width: 20,
-            height: 20
-          });
-
-          let itext = new fabric.IText("HELLO WORLD", );
-          itext.on("moving",(e)=>{
-              let {left, top} = canvas.getAbsoluteCoords(itext);
-              ref3.current.style.left =left+"px";
-              ref3.current.style.top = top-ref3.current.getBoundingClientRect().height   +"px";
-              
-          
-         
-              
-          })
-          canvas.add(itext)
-
-        //   position({canvas, obj:rect})
-        
-
-          
-          // "add" rectangle onto canvas
-          canvas.add(rect);
-      
 
 
     },[])

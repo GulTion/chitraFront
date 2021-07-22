@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+    <defs>
+        <style>
+            .cls-2{fill:#e6e6e6}
+        </style>
+    </defs>
+    <g id="Group_3999" transform="translate(-584 -1006)">
+        <g id="Icon_material-format-color-text" transform="translate(590.97 1013)">
+            <path id="Path_76" d="M0 30h16.144v3H0z" class="cls-2" transform="translate(0 -17)"/>
+            <path id="Path_77" d="M12.391 4.5l-4.141 11h1.694l.843-2.357h4.705l.843 2.357h1.694L13.9 4.5zm-1.039 7.071L13.143 6.6l1.792 4.974z" class="cls-2" transform="translate(-5.066 -4.5)"/>
+        </g>
+    </g>
+</svg>

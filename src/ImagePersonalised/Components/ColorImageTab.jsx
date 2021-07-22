@@ -19,6 +19,7 @@ export default function ColorImageTab(props) {
         <ColorTab {...props.ColorImageTab} chooseColor={props.ColorSelected}/>,
         <ImageTab {...props.ColorImageTab} chooseImage={props.ColorSelected}/>
     ]
+    
 
     return (<div className="_ColorImageTab">
         <div className="d-flex _Tab">
@@ -47,3 +48,4 @@ export default function ColorImageTab(props) {
         </div>
     </div>)
 }
+

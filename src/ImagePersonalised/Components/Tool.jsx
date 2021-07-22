@@ -1,6 +1,7 @@
 import React,{useState} from "react"
 import I from "./Icons/"
 import { addTextToCanvas } from "../functions"
+import { connect } from "react-redux"
  
 const Tabs = ({tabList})=>{
     return <div className="d-flex flex-row _Tabs">
@@ -30,10 +31,10 @@ const UnRedo = ({onUndo, onRedo})=>{
     </div>
 }
 
-export default function Tool(){
+function Tool(props){
     const [value,setValue] = useState("")
     const TabData = [
-        { icon:I.text, text:"Text", onClick:()=>{addTextToCanvas()} },
+        { icon:I.text, text:"Text", onClick:()=>{addTextToCanvas({addTextToObjectList:props.addTextToObjectList, openObjectOnSelect:props.openObjectOnSelect})} },
         { icon:I.image, text:"Image" , onClick:()=>{}},
         { icon:I.logo, text:"Logo" , onClick:()=>{}},
         { icon:I.profile, text:"Profile" , onClick:()=>{}},
@@ -45,3 +46,11 @@ export default function Tool(){
         <UnRedo onUndo={()=>{}} onRedo={()=>{}}/>
     </div>)
 }
+
+const mptf = dispatch =>{
+    return {
+        addTextToObjectList:action=>dispatch(action),
+        openObjectOnSelect:({id,select})=>dispatch({type:'OBJECT_LIST_CLOSE', data:{id, isOpen:select}})
+    }
+}
+export default connect(()=>{},mptf)(Tool)
