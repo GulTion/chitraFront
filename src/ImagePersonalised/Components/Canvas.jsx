@@ -92,7 +92,7 @@ function Canvas(props){
     return(
         <div className="_Canvas" ref={ref}>
         <canvas ref={ref1} ></canvas>
-        <div className="text" ref={ref3} style={{position:"fixed"}}>TEXT</div>
+        {/* <div className="text" ref={ref3} style={{position:"fixed"}}>TEXT</div> */}
         </div>
     )
 }

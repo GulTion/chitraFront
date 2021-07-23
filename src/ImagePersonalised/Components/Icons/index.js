@@ -28,6 +28,9 @@ import link from "./ico/link.svg";
 import unlink from "./ico/unlink.svg";
 import dragDots from "./ico/dragDots.svg";
 import blank from "./ico/blank.svg";
+import remove from "./ico/delete.svg";
+import zindex from "./ico/zindex.svg";
+import imageDefault from "./ico/imageDefault.png"
 
 import boldTextActive from "./ico/text/boldTextActive.svg"
 import boldTextWhite from "./ico/text/boldTextWhite.svg"
@@ -107,4 +110,7 @@ export default {
   unlink,
   dragDots,
   blank,
+  remove,
+  zindex,
+  imageDefault
 };

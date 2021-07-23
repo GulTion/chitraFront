@@ -4,6 +4,8 @@ import LinkUnlink from "./MiniComponents/LinkUnlink"
 import MiniInput from "./MiniComponents/MiniInput"
 import FrameInput from "./MiniComponents/FrameInput"
 import SliderInput from "./MiniComponents/SliderInput"
+import InputColor from "react-input-color"
+import InputSlider from "react-input-slider"
 
 export default function ImageSettings(){
     return (
@@ -17,7 +19,9 @@ export default function ImageSettings(){
                 </div>
                 <FrameInput label="Frame"/>
             </div>
-            <SliderInput max={10} min={-10} value={4}/>
+            <SliderInput label="SkewX" value={2} max={5} min={-5} step={0.1}/>
+            <SliderInput label="SkewY" value={2} max={5} min={-5} step={0.1}/>
+          
         </div>
     )
 }

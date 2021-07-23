@@ -19,13 +19,8 @@ const ObjectList = (props)=>{
 
         {props.objectList.map((obj, i)=>{
             return  (<ObjectTab 
-                icon={obj.icon} 
-                title={obj.title} 
-                isOpen={obj.isOpen}
-                unique={obj.unique}
-                id={obj.id}
-                key={obj.id}
-                onOpen={props.onObjectListClose}
+                onOpen={props.onOpen}
+                {...obj}
                 >
             {obj.element}
         </ObjectTab>)

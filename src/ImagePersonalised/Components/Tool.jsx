@@ -1,7 +1,10 @@
 import React,{useState} from "react"
 import I from "./Icons/"
-import { addTextToCanvas } from "../functions"
+import { addTextToCanvas,addImageToCanvas } from "../functions"
 import { connect } from "react-redux"
+import uuid from "uuid-random"
+import TextSettings from "./TextSettings"
+import ImageSettings from "./ImageSettings"
  
 const Tabs = ({tabList})=>{
     return <div className="d-flex flex-row _Tabs">
@@ -34,8 +37,8 @@ const UnRedo = ({onUndo, onRedo})=>{
 function Tool(props){
     const [value,setValue] = useState("")
     const TabData = [
-        { icon:I.text, text:"Text", onClick:()=>{addTextToCanvas({addTextToObjectList:props.addTextToObjectList, openObjectOnSelect:props.openObjectOnSelect})} },
-        { icon:I.image, text:"Image" , onClick:()=>{}},
+        { icon:I.text, text:"Text", onClick:()=>{props.addObject({type:'text', title:'untitled text 1', element:(object)=><TextSettings object={object}/>, addObjectToCanvas:addTextToCanvas})} },
+        { icon:I.image, text:"Image" , onClick:()=>{props.addObject({type:'image', title:'untitled image 1', element:(object)=><ImageSettings object={object}/>, addObjectToCanvas:addImageToCanvas})}},
         { icon:I.logo, text:"Logo" , onClick:()=>{}},
         { icon:I.profile, text:"Profile" , onClick:()=>{}},
         { icon:I.website, text:"Website" , onClick:()=>{}},
@@ -48,9 +51,26 @@ function Tool(props){
 }
 
 const mptf = dispatch =>{
+    
     return {
-        addTextToObjectList:action=>dispatch(action),
-        openObjectOnSelect:({id,select})=>dispatch({type:'OBJECT_LIST_CLOSE', data:{id, isOpen:select}})
+        addObject:({type, title,element, addObjectToCanvas})=>{
+            const id = uuid();
+            const {text, object} = addObjectToCanvas(id);
+            dispatch({type:'ADD_OBJECT', data:{
+                        type,
+                        element:element(object),
+                        icon:I[type],
+                        isOpen:false,
+                        title,
+                        unique:false,
+                        text,
+                        object,
+                        id,
+                        select:false
+            }})
+        },
+        // addTextToObjectList:action=>dispatch(action),
+        // openObjectOnSelect:({id,select})=>dispatch({type:'OBJECT_LIST_CLOSE', data:{id, isOpen:select}})
     }
 }
 export default connect(()=>{},mptf)(Tool)

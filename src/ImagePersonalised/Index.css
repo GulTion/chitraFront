@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-
+*{
+  user-select: none;
+}
 :root {
   --_1px: 0.052vw;
 }
@@ -165,10 +167,10 @@
   padding: 0.781vw 1.042vw;
   background-color: #3d3d3d;
   border: solid 0.052vw #4d4d4d;
-  max-height: 30.5vw;
-  height: fit-content;
+  /* max-height: 30.5vw; */
+  /* height: fit-content; */
   overflow-y: scroll;
-  height: 100%;
+  /* height: 100%; */
   /* position:absolute; */
   /* width: 100%; */
 }
@@ -186,6 +188,7 @@
 }
 
 ._ArtBoardSettings {
+  height: 33vw;
 }
 
 ._ArtBoardSettings ._First {
@@ -244,6 +247,24 @@
   background: #3d3d3d;
   border: none !important;
   z-index: 1;
+}
+
+._ObjectTabRename{
+background: #333333;
+box-shadow: 0 0 0.521vw 0 rgba(0, 0, 0, 0.2);
+border-radius: 0.260vw;
+border: none;
+padding:0.260vw 0.521vw ;
+color: #e6e6e6;
+outline: none;
+}
+._ObjectTabNotRename{
+  padding: 0;
+  background: transparent;
+  color:  #e6e6e6;
+  border: none;
+  font-size: 0.729vw;
+  cursor:text;
 }
 ._CheckIcon{
   position: absolute;
@@ -512,11 +533,26 @@ input[type=number] {
 }
 
 ._SliderInput {
-
+font-size: 0.729vw;
+margin-top: 0.460vw;
 }
 ._SliderInput ._Input{
-    height: 0.521vw;
+    /* height: 0.521vw; */
+
 } 
+._SliderInput ._Input ._Number{
+  width: 2.083vw;
+  height: 1.563vw;
+  border-radius: 0.260vw;
+  background-color: #242424;
+  border: none;
+  font-size: 0.729vw;
+  text-align: center;
+  color: #e6e6e6;
+  box-shadow: 0 0 0.521vw 0 rgba(0, 0, 0, 0.2);  
+
+}
+
 
 
 
