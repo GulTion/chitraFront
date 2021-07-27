@@ -53,6 +53,7 @@ export function addImageToCanvas(id){
     text.className="_ObjectLabel"
     text.innerHTML = "Image"
     document.body.appendChild(text);
+
     // ReactDOM.render(TextControl, document.getElementById('root'));
     let _img =new window.Image()
     _img.onload = e=>{
@@ -63,8 +64,9 @@ export function addImageToCanvas(id){
         ...document._.selectionSettings,
         width:970,
         height:513,
-        scaleX:0.3,
-        scaleY:0.3
+        scaleX:0.4,
+        scaleY:0.4,
+        // clipPath
     },e=>{
         // log(e)
     })
@@ -74,7 +76,8 @@ export function addImageToCanvas(id){
         cornerSize:10,
         hasBorders:false,
         top:object.top,
-        left:object.left
+        left:object.left,
+        visible:false
     })
     // canvas.sendToBack(object);
   
@@ -111,7 +114,9 @@ export function addImageToCanvas(id){
         moverControl()
     })
     object.on('scaling',()=>{ 
-        moverControl()
+       
+        moverControl();
+
     })
     object.on('deselected',()=>{
         text.style.display="none"
@@ -138,7 +143,7 @@ export function addImageToCanvas(id){
 
 
 cropFrame.setControlsVisibility({
-    mtr:false
+   
 })
 cropFrame.on("scaling", (e)=>{
     rect.set({
@@ -147,6 +152,7 @@ cropFrame.on("scaling", (e)=>{
         strokeWidth:Math.min(info.rect.strokeWidth/cropFrame.scaleX,info.rect.strokeWidth/cropFrame.scaleY)
     })
 
+    
     lines.forEach(e=>{
         e.set({
             strokeWidth:Math.min(info.lines.strokeWidth/cropFrame.scaleX,info.lines.strokeWidth/cropFrame.scaleY)
@@ -154,17 +160,46 @@ cropFrame.on("scaling", (e)=>{
     })
     canvas.renderAll()
 })
+cropFrame.on("selected",()=>{
+    object.clipPath = null;
+    canvas.renderAll()
+})
+cropFrame.on("deselected",()=>{
+    let _y = (cropFrame.top-object.top);
+    let _x = (cropFrame.left-object.left);
+    let rx = cropFrame.width*cropFrame.scaleX/(object.scaleX*2);
+    let ry = cropFrame.height*cropFrame.scaleY/(object.scaleY*2);
+    log(object)
+    let mask = new fabric.Ellipse({
+        rx,
+        ry,
+        angle:cropFrame.angle,
+        left:((object.width / 2) * -1)+_x/object.scaleX
+        ,
+        top:((object.height / 2) * -1) +_y/object.scaleY,
+    
+        // top:cropFrame.top,
+        // left:cropFrame.left,
+        // originX:false,
+
+        // absolutePositioned:true
+    })
+    object.clipPath = mask;
+    // mask.absolutePositioned=false
+    cropFrame.set({visible:false})
+    canvas.renderAll()
+})
 
 
 
 
-
-canvas.add(object);
+canvas.add(object, cropFrame);
+// cropFrame.set({top:0,left: 0})
 canvas.renderAll()
-canvas.setActiveObject(cropFrame);
+// canvas.setActiveObject(cropFrame);
 // canvas.on('object:moving', null);
 
-    return {object:object, text:text}
+    return {object:object,frame:cropFrame, text:text}
 }
 
 let text = document.createElement("div");

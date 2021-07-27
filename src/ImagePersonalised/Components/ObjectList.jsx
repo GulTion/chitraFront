@@ -27,6 +27,7 @@ const SortableList = SortableContainer(({items}) => {
         ))}
       
         </>
+        {props.isChooseImageActive&&<ChooseImage onBack={props.chooseImageActivator}/>}
       </div>
     );
   });
@@ -36,7 +37,7 @@ const SortableList = SortableContainer(({items}) => {
 
         <SortableList useDragHandle={true} items={props.objectList} onSortEnd={props.sortObjectList}/>
         
-{props.isChooseImageActive&&<ChooseImage onBack={props.chooseImageActivator}/>}
+
     </>
 }
 

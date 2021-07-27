@@ -19,6 +19,8 @@ function ObjectTab({ icon, title, isOpen, ...props }) {
   const [isRename, setRename] = useState(false);
   const [name, setName] = useState(title)
 
+  let Children = ()=>props.children;
+
   
 
   const _setOpen = () => {
@@ -108,7 +110,7 @@ function ObjectTab({ icon, title, isOpen, ...props }) {
         className={`_ObjectData`}
         style={{ display: isOpen ? "block" : "none" }}
       >
-        {isOpen ? props.children : null}
+        {isOpen ? <Children {...props}/> : null}
       </div>
         {props.type==='text'&&<div className="_TextControl" id={`_${props.id}-textControl`}><TextControl /></div>}
         {props.type==='image'&&<div className="_TextControl" id={`_${props.id}-imageControl`}><ImageControl /></div>}

@@ -38,7 +38,7 @@ function Tool(props){
     const [value,setValue] = useState("")
     const TabData = [
         { icon:I.text, text:"Text", onClick:()=>{props.addObject({type:'text', title:'untitled text 1', element:(object)=><TextSettings object={object}/>, addObjectToCanvas:addTextToCanvas})} },
-        { icon:I.image, text:"Image" , onClick:()=>{props.addObject({isOpen:false,type:'image', title:'untitled image 1', element:(object)=><ImageSettings object={object}/>, addObjectToCanvas:addImageToCanvas})}},
+        { icon:I.image, text:"Image" , onClick:()=>{props.addObject({isOpen:false,type:'image', title:'untitled image 1', element:(object,frame)=><ImageSettings object={object} frame={frame}/>, addObjectToCanvas:addImageToCanvas})}},
         { icon:I.logo, text:"Logo" , onClick:()=>{}},
         { icon:I.profile, text:"Profile" , onClick:()=>{}},
         { icon:I.website, text:"Website" , onClick:()=>{}},
@@ -55,10 +55,10 @@ const mptf = dispatch =>{
     return {
         addObject:({type, title,element, addObjectToCanvas,isOpen=false})=>{
             const id = uuid();
-            const {text, object} = addObjectToCanvas(id);
+            const {text, object,frame=null} = addObjectToCanvas(id);
             dispatch({type:'ADD_OBJECT', data:{
                         type,
-                        element:element(object),
+                        element:element(object,frame),
                         icon:I[type],
                         isOpen,
                         title,
@@ -66,7 +66,8 @@ const mptf = dispatch =>{
                         text,
                         object,
                         id,
-                        select:false
+                        select:false,
+                        frame
             }})
         },
         // addTextToObjectList:action=>dispatch(action),

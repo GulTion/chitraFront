@@ -14,10 +14,12 @@ const {log} = console
 
  function ImageSettings(props){
      
-     const [width, setWidth] = useState(props.object.width*props.object.scaleX);
-     const [height, setHeight] = useState(props.object.height*props.object.scaleY);
+     
+     const [width, setWidth] = useState(Number(props.object.width*props.object.scaleX).toFixed(1));
+     const [height, setHeight] = useState(Number(props.object.height*props.object.scaleY).toFixed(1));
      const [ratio, setRatio] = useState(true);
      useEffect(()=>{
+         log(props)
         props.object.on('scaling', ()=>{
             setWidth(Number(props.object.width*props.object.scaleX).toFixed(1))
             setHeight(Number(props.object.height*props.object.scaleY).toFixed(1))
@@ -29,7 +31,7 @@ const {log} = console
             <div className="d-flex flex-row justify-content-between _WidthHeight">
                 <div className="d-flex flex-row ">
                     <MiniInput value={height} onChange={e=>{
-                       setHeight(e);
+                       setHeight(Number(e).toFixed(1));
                        let prevScale = props.object.scaleY;
                        let newScale = e/props.object.height;
                        let scaleRatio = newScale/prevScale;
@@ -46,7 +48,7 @@ const {log} = console
                     }} label="Height:"/>
                     <LinkUnlink toggle={ratio} setToggle={(e)=>setRatio(e)}/>
                     <MiniInput value={width} onChange={e=>{
-                       setWidth(e);
+                       setWidth(Number(e).toFixed(1));
                        let prevScale = props.object.scaleX;
                        let newScale = e/props.object.width;
                        let scaleRatio = newScale/prevScale;
@@ -62,10 +64,16 @@ const {log} = console
                        document._.canvas.renderAll()
                     }} label="Width:"/>
                 </div>
-                <FrameInput label="Frame"/>
+                <FrameInput label="Frame" object={props.object} frame={props.frame}/>
             </div>
-            <SliderInput label="SkewX" value={2} max={5} min={-5} step={0.1}/>
-            <SliderInput label="SkewY" value={2} max={5} min={-5} step={0.1}/>
+            <SliderInput label="SkewX" value={props.object.skewX} max={90} min={-90} onChange={e=>{
+                props.object.set({skewX:e})
+                document._.canvas.renderAll()
+            }}  step={1}/>
+            <SliderInput label="SkewY" value={props.object.skewY} max={90} min={-90} step={1} onChange={e=>{
+                props.object.set({skewY:e})
+                document._.canvas.renderAll()
+            }}/>
           
         </div>
     )
