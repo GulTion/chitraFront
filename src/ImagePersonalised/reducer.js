@@ -2,6 +2,7 @@ import React from "react";
 import ArtBoardSettings from "./Components/ArtBoardSettings";
 import I from "./Components/Icons/";
 import uuid from "uuid-random";
+import arrayMove from 'array-move';
 
 const istate = {
   canvas: {
@@ -12,8 +13,10 @@ const istate = {
       name: "#ffffff",
     },
   },
+  isChooseImageActive:false,
+
   objectList: [
-{
+    {
       element: <ArtBoardSettings />,
       icon: I.artboard,
       isOpen: true,
@@ -32,7 +35,7 @@ export default (state = istate, action) => {
   const { data, type } = action;
   switch (action.type) {
     case "COLOR_CHOOSE_CANVAS":
-      log(action);
+      // log(action);
       return {
         ...state,
         canvas: {
@@ -41,11 +44,25 @@ export default (state = istate, action) => {
         },
       };
     case "ADD_OBJECT":
-      log(data);
+      let sorted1 = [data, ...state.objectList];
+      // let n = sorted1.length-1;
+      // sorted1.forEach((e,i)=>{
+      //   if(i!==sorted1.length-1){
+
+      //     log(e.object?.id,document._.canvas.getObjects().indexOf(e.object))
+      //     document._.canvas.moveTo(e.object, n--);
+      //     log(e.object.id,document._.canvas.getObjects().indexOf(e.object))
+  
+
+      //   }
+  
+      // })
+      // document._.canvas.renderAll();
+      // // log(data);
     
       return {
         ...state,
-        objectList: [data, ...state.objectList],
+        objectList:sorted1 
       };
     case "OBJECT_LIST_CLOSE":
 
@@ -60,7 +77,7 @@ export default (state = istate, action) => {
         }),
       };
     case 'OBJECT_DELETE':
-        log(data)
+        // log(data)
         
         // document._['tabOperation'] = 'delete'
         return {
@@ -80,6 +97,28 @@ export default (state = istate, action) => {
                 return e
             })
         }
+    case 'CHOOSE_IMAGE_ACTIVATE':
+      return {
+        ...state,
+        isChooseImageActive:data
+      }
+
+    case 'SORT_LIST':
+      // log(data)
+      // document._.canvas.moveTo(state.objectList[data.oldIndex].object, state.objectList.length-data.newIndex-1);
+      let sorted = arrayMove(state.objectList, data.oldIndex, data.newIndex);
+      sorted.forEach((e,i)=>{
+        if(i==sorted.length-1){
+          return;
+        }
+        document._.canvas.moveTo(e.object, sorted.length-i);
+      })
+      document._.canvas.renderAll();
+      return {
+        ...state,
+        objectList:sorted
+      }
+    
 
     default:
       return state;

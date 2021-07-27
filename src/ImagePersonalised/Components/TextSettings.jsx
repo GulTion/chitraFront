@@ -9,16 +9,7 @@ import { useEffect } from "react";
 import { useRef } from "react";
 import SliderInput from "./MiniComponents/SliderInput";
 
- function textFormating(style, family,object){
-    const {canvas} = document._;
-    let now = canvas.getActiveObject();
-    now.set({
-        [style]:!now[style],
-        [family]:style
 
-    })
-    canvas.renderAll()
-}
 
 function TextSettings(props){
     const ref1 = useRef()
@@ -38,6 +29,28 @@ function TextSettings(props){
         })
 
     },[])
+
+    function textFormating(style, family,object){
+        const {canvas} = document._;
+        let now = props.object;
+        now.setSelectionStyles({
+            [style]:!now[style],
+            [family]:style
+    
+        })
+        canvas.renderAll()
+    }
+    function _textFormating(style, family,object){
+        const {canvas} = document._;
+        let now = props.object;
+        now.set({
+            [style]:!now[style],
+            [family]:style
+    
+        })
+        canvas.renderAll()
+    }
+
  
 
     // useEffect(()=>{
@@ -50,15 +63,15 @@ function TextSettings(props){
             <MiniInput label="Font family" width="100%" type={"text"} value={"Poppins"}/>
             <MiniInput label="Font size"  value={fontSize} onChange={e=>{
                 setSize(e)
-                props.object.set({scaleX:e/40, scaleY:e/40})
+                props.object.setSelectionStyles({fontSize:e})
                 document._.canvas.renderAll()
             }} type="number"/>
         </div>
         <div className="d-flex flex-row justify-content-between _FontButtons">
             <div className="d-flex flex-row justify-content-start _AlignFontButtons">
-                <MiniToggle activeIcon={I.leftAlignActive} normalIcon={I.leftAlignWhite} toggle={align==='left'} onToggle={(e)=>{textFormating('left', 'textAlign'); setAlign('left')}}/>
-                <MiniToggle activeIcon={I.centerAlignActive} normalIcon={I.centerAlignWhite} toggle={align==='center'} onToggle={()=>{textFormating('center', 'textAlign'); setAlign('center')}}/>
-                <MiniToggle activeIcon={I.rightAlignActive} normalIcon={I.rightAlignWhite} toggle={align==='right'} onToggle={()=>{textFormating('right', 'textAlign'); setAlign('right')}}/>
+                <MiniToggle activeIcon={I.leftAlignActive} normalIcon={I.leftAlignWhite} toggle={align==='left'} onToggle={(e)=>{_textFormating('left', 'textAlign'); setAlign('left')}}/>
+                <MiniToggle activeIcon={I.centerAlignActive} normalIcon={I.centerAlignWhite} toggle={align==='center'} onToggle={()=>{_textFormating('center', 'textAlign'); setAlign('center')}}/>
+                <MiniToggle activeIcon={I.rightAlignActive} normalIcon={I.rightAlignWhite} toggle={align==='right'} onToggle={()=>{_textFormating('right', 'textAlign'); setAlign('right')}}/>
 
             </div>
             <div className="d-flex flex-row justify-content-end _StyleFontButtons">
@@ -73,14 +86,14 @@ function TextSettings(props){
         <div className="d-flex flex-row justify-content-start _FontButtons">
             <input type="color" style={{display:"none"}} ref={ref1} value={color} onChange={e=>{
                 if(type==='fill'){
-                    props.object.set({fill:e.target.value})
+                    props.object.setSelectionStyles({fill:e.target.value})
                     document._.canvas.renderAll()
                 }else  if(type==='textBackgroundColor'){
-                    props.object.set({textBackgroundColor:e.target.value})
+                    props.object.setSelectionStyles({textBackgroundColor:e.target.value})
                     document._.canvas.renderAll()
                 }
                 else  if(type==='stroke'){
-                    props.object.set({stroke:e.target.value})
+                    props.object.setSelectionStyles({stroke:e.target.value})
                     document._.canvas.renderAll()
                 }
 

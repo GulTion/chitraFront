@@ -4,40 +4,60 @@ import ObjectTab from "./ObjectTab"
 import ArtBoardSettings from "./ArtBoardSettings"
 import I from "./Icons/"
 import uuid from "uuid-random"
+import {SortableContainer, SortableElement} from 'react-sortable-hoc';
+import ChooseImage from "./MiniComponents/ChooseImage"
 
 const ObjectList = (props)=>{
+    const SortableItem = SortableElement(({obj}) =><ObjectTab 
+    key={uuid()}
+    // onOpen={props.onOpen}
+    object={obj.object}
+    {...obj}
+    >
+{obj.element}
+</ObjectTab>);
 
-    return <div className="_ObjectList" >
+const SortableList = SortableContainer(({items}) => {
+    return (
+        <div className="_ObjectList" >
+            <>
+        {items.map((obj, index) => (
+         <SortableItem key={`${index+uuid()}`} index={index} obj={obj}/>
+         
+        ))}
+      
+        </>
+      </div>
+    );
+  });
 
-        {/* <ObjectTab icon={I.text} title="Text Settings" isOpen={!false}>
-           <TextSettings />
-        </ObjectTab>
-        <ObjectTab icon={I.image} title="Image Settings">
-           <ImageSettings />
-        </ObjectTab>
-        */}
 
-        {props.objectList.map((obj, i)=>{
-            return  (<ObjectTab 
-                onOpen={props.onOpen}
-                {...obj}
-                >
-            {obj.element}
-        </ObjectTab>)
-        })}
+    return <>
+
+        <SortableList useDragHandle={true} items={props.objectList} onSortEnd={props.sortObjectList}/>
         
-    </div>
+{props.isChooseImageActive&&<ChooseImage onBack={props.chooseImageActivator}/>}
+    </>
 }
 
 const mstp=state=>{
     return {
-        objectList:state.objectList
+        objectList:state.objectList,
+        isChooseImageActive:state.isChooseImageActive
     }
 }
 
 const mptf = dispatch =>{
     return {
-        onObjectListClose:(obj)=>dispatch({type:"OBJECT_LIST_CLOSE", data:obj})
+        onObjectListClose:(obj)=>dispatch({type:"OBJECT_LIST_CLOSE", data:obj}),
+        chooseImageActivator:(bool)=>dispatch({
+            type:"CHOOSE_IMAGE_ACTIVATE",
+            data:bool
+        }),
+        sortObjectList:(o)=>dispatch({
+            type:"SORT_LIST",
+            data:o
+        })
     }
 }
 

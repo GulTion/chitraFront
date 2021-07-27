@@ -14,6 +14,7 @@ export default function SliderInput({ label, max, min, value,step, onChange=()=>
             track: {
               backgroundColor: "#242424",
               height: "0.521vw",
+              width:"80%"
             },
             active: {
               backgroundColor: "#242424",

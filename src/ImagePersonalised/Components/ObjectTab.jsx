@@ -1,32 +1,25 @@
-import React, { useState } from "react";
+import React, { useState,useRef } from "react";
 import { useEffect } from "react";
 import { connect } from "react-redux";
 import I from "./Icons/";
+import TextControl from "./MiniComponents/TextControl";
+import ImageControl from "./MiniComponents/ImageControl";
+import {
+  sortableContainer,
+  sortableElement,
+  sortableHandle,
+} from 'react-sortable-hoc';
+
 const {log} = console
 
 function ObjectTab({ icon, title, isOpen, ...props }) {
+  const textControl = useRef()
+
   const { unique, text, object ,id } = props;
   const [isRename, setRename] = useState(false);
-      if(!unique){
-        object.on("selected", ()=>{
-        text.style.display = "block";
-        log('working')
-        log("what")
-        props.onOpen({id, isOpen:true,select:true})
-        
-    })
-   object.on("deselected", ()=>{
-        text.style.display = "none"
-        // openObjectOnSelect({id,select:false})
-        props.onOpen({id, isOpen:false,select:false})
-    })
-    document._.canvas.on('object:scaling', (e)=>{
-    //    props.onScaling(Number(e.target.scaleY*40).toFixed(2))
- })
+  const [name, setName] = useState(title)
 
-      }
-
-      
+  
 
   const _setOpen = () => {
     const { canvas } = document._;
@@ -42,6 +35,7 @@ function ObjectTab({ icon, title, isOpen, ...props }) {
       }
     
   };
+  const DragHandle = sortableHandle(() => <img draggable={false} src={unique ? I.blank : I.dragDots} alt={title} />);
 
   return (
     <>
@@ -51,22 +45,26 @@ function ObjectTab({ icon, title, isOpen, ...props }) {
         }`}
       >
         <div className="_TabName">
-          <img src={unique ? I.blank : I.dragDots} alt={title} />
+          <DragHandle/>
           <img src={icon} alt={title} />
           {isRename ? (
             <input
-              onKeyPress={(e) => {
-                if (e.key === "Enter") {
-                  setRename(false);
+              onKeyDown={(e) => {
+                log(e.key)
+                if (e.key == "Enter") {
+                setRename(false);
+
+                  props.onRename({value:name, id:props.id})
                 }
               }}
               type="text"
               disabled={!isRename}
               className={"_ObjectTabRename"}
-              value={title}
-              onChange={(e)=>props.onRename({value:e.target.value, id:props.id})}
+              value={name}
+              onChange={(e)=>setName(e.target.value)}
               onBlur={() => {
                 setRename(false);
+                props.onRename({value:name, id:props.id})
               }}
             />
           ) : (
@@ -112,6 +110,8 @@ function ObjectTab({ icon, title, isOpen, ...props }) {
       >
         {isOpen ? props.children : null}
       </div>
+        {props.type==='text'&&<div className="_TextControl" id={`_${props.id}-textControl`}><TextControl /></div>}
+        {props.type==='image'&&<div className="_TextControl" id={`_${props.id}-imageControl`}><ImageControl /></div>}
     </>
   );
 }
@@ -131,4 +131,4 @@ const mptf = (dispatch) => {
   };
 };
 
-export default connect(() => {}, mptf)(ObjectTab);
+export default connect(() => {return {}}, mptf)(ObjectTab);

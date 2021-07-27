@@ -9,15 +9,22 @@ import { useState } from "react"
 import uuid from "uuid-random"
 import { connect } from "react-redux"
 import ObjectList from "./ObjectList"
+import  ChooseImage from "./MiniComponents/ChooseImage"
 
 
-
-function Main(){
+function Main(props){
     return <div className="d-flex flex-row justify-content-between _Main">
         <Canvas />
         <ObjectList />
+        
     </div>
 }
+const mstop = state =>{
+    return {
+        isChooseImageActive:state.isChooseImageActive
+    }
+}
 
-export default connect()(Main);
+
+export default connect(mstop,)(Main);
 

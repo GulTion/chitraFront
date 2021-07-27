@@ -30,6 +30,10 @@ import dragDots from "./ico/dragDots.svg";
 import blank from "./ico/blank.svg";
 import remove from "./ico/delete.svg";
 import zindex from "./ico/zindex.svg";
+import settings from "./ico/settings.svg";
+import settingsActive from "./ico/settingsActive.svg";
+import settingsNormal from "./ico/settingsNormal.svg";
+import deleteNormal from "./ico/deleteNormal.svg";
 import imageDefault from "./ico/imageDefault.png"
 
 import boldTextActive from "./ico/text/boldTextActive.svg"
@@ -112,5 +116,9 @@ export default {
   blank,
   remove,
   zindex,
+  settings,
+  settingsActive,
+  settingsNormal,
+  deleteNormal,
   imageDefault
 };

@@ -71,6 +71,9 @@ function Canvas(props){
           cornerSize:12
         }
         document._.canvas = canvas;
+        
+
+
         let parent = ref.current;
 
         let {width, height} = parent.getBoundingClientRect()
@@ -80,7 +83,8 @@ function Canvas(props){
         canvas.setDimensions({
             width,height
         })
-
+        
+        
 
 
     },[])
