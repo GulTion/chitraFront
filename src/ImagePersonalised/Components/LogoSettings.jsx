@@ -35,6 +35,7 @@ function ImageSettings(props) {
         object={props.object}
         mergeText={`{${props.chooseImageTagText}}`}
         imageTagText={`Add ${props.chooseImageTagText} +`}
+        imageSrc={props.imageSrc}
       />
       <div className="d-flex flex-row justify-content-between _WidthHeight">
         <div className="d-flex flex-row ">

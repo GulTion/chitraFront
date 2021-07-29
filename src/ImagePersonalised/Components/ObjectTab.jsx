@@ -171,6 +171,21 @@ function ObjectTab({ icon, title, isOpen, ...props }) {
           />
         </div>
       )}
+      {props.type === "website" && (
+        <div
+          className="_TextControl _ImageControl"
+          id={`_${props.id}-imageControl`}
+        >
+          <LogoControl
+            mergeTagText="Website"
+            id={props.id}
+            onDelete={(e) => props.onDelete(e)}
+            onOpen={(e) => props.onOpen(e)}
+            isOpen={isOpen}
+            object={props.object}
+          />
+        </div>
+      )}
     </>
   );
 }

@@ -107,6 +107,7 @@ function Tool(props) {
               chooseImageTagText={"Logo"}
               object={object}
               frame={frame}
+              imageSrc={I.logoImage}
             />
           ),
           addObjectToCanvas: addLogoToCanvas,
@@ -130,13 +131,37 @@ function Tool(props) {
               chooseImageTagText={"Profile"}
               object={object}
               frame={frame}
+              imageSrc={I.profileImage}
             />
           ),
           addObjectToCanvas: addLogoToCanvas,
         });
       },
     },
-    { icon: I.website, text: "Website", onClick: () => {} },
+    {
+      icon: I.website,
+      text: "Website",
+      onClick: () => {
+        props.addObject({
+          isOpen: false,
+          type: "website",
+          title: "untitled website 1",
+          textName: "Website",
+          imageSrc: I.websiteImage,
+          imageWidth: 450,
+          imageHeight: 250,
+          element: (object, frame) => (
+            <LogoSettings
+              chooseImageTagText={"Website"}
+              object={object}
+              frame={frame}
+              imageSrc={I.websiteImage}
+            />
+          ),
+          addObjectToCanvas: addLogoToCanvas,
+        });
+      },
+    },
   ];
   return (
     <div className="d-flex justify-content-between align-items-center _Tool">

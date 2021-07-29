@@ -5,6 +5,7 @@ export default function ChooseImageTag({
   mergeText,
   imageTagText,
   chooseImage,
+  imageSrc,
 }) {
   const [who, setWho] = useState(object.chooseImageTagType);
 
@@ -24,7 +25,7 @@ export default function ChooseImageTag({
         onClick={() => {
           handleForChooseImage(who);
           let img = new Image();
-          img.src = I.logoImage;
+          img.src = imageSrc;
           object.setElement(img);
           document._.canvas.renderAll();
         }}
