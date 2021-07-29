@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-*{
+* {
   user-select: none;
 }
 :root {
@@ -175,9 +175,7 @@
   /* width: 100%; */
 }
 
-
-
-._ObjectList{
+._ObjectList {
   width: 20.417vw;
   height: 34vw;
   /* position: relative; */
@@ -222,132 +220,129 @@
 ._CurrentColor ._ColorDetails {
   padding: 0.729vw 1.042vw;
 }
-._ColorImageTab ._Tab{
-
+._ColorImageTab ._Tab {
 }
-._TabContent{
-  padding: 0.260vw 0;
+._TabContent {
+  padding: 0.26vw 0;
 }
-._OneTab{
+._OneTab {
   width: 100%;
   background-color: #242424;
   font-size: 0.729vw;
   padding: 0.521vw 0;
-  box-shadow: 0 -0.290vw 0.52vw 0 #00000033;
+  box-shadow: 0 -0.29vw 0.52vw 0 #00000033;
   border: solid 0.052vw #4d4d4d;
   border-radius: 0.26vw;
   position: relative;
   cursor: pointer;
 }
 
-._OneTab img._Icon{
+._OneTab img._Icon {
   width: 0.781vw;
   height: 0.781vw;
   margin: 0 0.313vw;
 }
-._OneTabActive{
+._OneTabActive {
   color: #e7416a;
   background: #3d3d3d;
   border: none !important;
   z-index: 1;
 }
 
-._ObjectTabRename{
-background: #333333;
-box-shadow: 0 0 0.521vw 0 rgba(0, 0, 0, 0.2);
-border-radius: 0.260vw;
-border: none;
-padding:0.260vw 0.521vw ;
-color: #e6e6e6;
-outline: none;
+._ObjectTabRename {
+  background: #333333;
+  box-shadow: 0 0 0.521vw 0 rgba(0, 0, 0, 0.2);
+  border-radius: 0.26vw;
+  border: none;
+  padding: 0.26vw 0.521vw;
+  color: #e6e6e6;
+  outline: none;
 }
-._ObjectTabNotRename{
+._ObjectTabNotRename {
   padding: 0;
   background: transparent;
-  color:  #e6e6e6;
+  color: #e6e6e6;
   border: none;
   font-size: 0.729vw;
-  cursor:text;
+  cursor: text;
 }
-._CheckIcon{
+._CheckIcon {
   position: absolute;
   top: -0.052vw;
   left: -0.052vw;
   width: 1.563vw;
   height: 1.563vw;
 }
-._TabColorLine{
+._TabColorLine {
   width: 100%;
-  height: 0.260vw;
+  height: 0.26vw;
   border-radius: 0.26vw 0.26vw 0 0;
   background-image: linear-gradient(92deg, #ea1f72 1%, #d86666);
   position: absolute;
   top: 0;
   left: 0;
 }
-._ColorTab{
+._ColorTab {
   display: flex;
   flex-flow: row wrap;
-  justify-content:space-between;
+  justify-content: space-between;
   /* overflow-y: scroll; */
 }
-._ColorTab ._Color{
+._ColorTab ._Color {
   box-sizing: border-box;
   width: 8.6vw;
   height: 5vw;
-  margin: 0.250vw;
+  margin: 0.25vw;
   border-radius: 0.26vw;
   border: solid 0.052vw #333333;
   cursor: pointer;
 }
 
-._Custom_Color{
+._Custom_Color {
   position: relative;
   background: #242424;
-  border:inset 0.052vw solid #333333 !important;
+  border: inset 0.052vw solid #333333 !important;
 }
-._Color_Selected{
-  border:solid 0.260vw #ea1f72 !important;
+._Color_Selected {
+  border: solid 0.26vw #ea1f72 !important;
 }
-._Custom_Color::after{
+._Custom_Color::after {
   position: absolute;
-  content: '';
+  content: "";
   width: 7vw;
   height: 3.438vw;
   background: transparent;
   border-radius: 0.26vw;
-  border:dashed 0.15vw #333333 !important;
+  border: dashed 0.15vw #333333 !important;
 }
-._ImageTab{
+._ImageTab {
   font-size: 0.729vw;
 }
-._ImageTab ._SearchSection{
+._ImageTab ._SearchSection {
   font-size: 0.729vw;
   margin-top: 0.521vw !important;
-
 }
-._ImageTab ._SearchSection ._SearchInput,._ImageTab ._SearchSection ._SelectInput{
+._ImageTab ._SearchSection ._SearchInput,
+._ImageTab ._SearchSection ._SelectInput {
   box-sizing: border-box;
   width: 10vw;
-  padding:0.625vw 1.042vw;
+  padding: 0.625vw 1.042vw;
   background-color: #242424;
   height: 2.083vw;
   border-radius: 1.042vw;
-  border:solid 0.052vw #333333 !important;
+  border: solid 0.052vw #333333 !important;
 }
-._ImageTab ._SearchSection ._SearchInput:hover{
+._ImageTab ._SearchSection ._SearchInput:hover {
   transition-duration: 0.5s;
   border: 0.052vw solid #e72870 !important;
 }
-._ImageTab ._SearchSection ._SelectInput{
+._ImageTab ._SearchSection ._SelectInput {
   padding: 0.521vw 0.781vw !important;
   width: 7.813vw;
-  
-
 }
 
-._ImageTab ._SearchSection ._SearchInput input{
-  margin-left: 0.260vw;
+._ImageTab ._SearchSection ._SearchInput input {
+  margin-left: 0.26vw;
   width: 100%;
   height: 100%;
   background-color: transparent;
@@ -355,7 +350,7 @@ outline: none;
   outline: none;
   color: #e6e6e6;
 }
-._DragAndDropImage{
+._DragAndDropImage {
   background-color: #242424;
   width: 100%;
   height: 4.688vw;
@@ -367,72 +362,66 @@ outline: none;
   align-items: center;
   padding: 0.729vw !important;
 }
-._DragAndDropImage img{
+._DragAndDropImage img {
   height: 1.042vw;
   width: 1.042vw;
 }
-._DragAndDropImage::after{
+._DragAndDropImage::after {
   top: 0.729vw;
   left: 0.729vw;
   position: absolute;
-  content: '';
+  content: "";
   width: calc(100% - 1.458vw);
   height: calc(100% - 1.458vw);
   background: transparent;
   border-radius: 0.26vw;
-  border:dashed 0.15vw #333333 !important;
-
+  border: dashed 0.15vw #333333 !important;
 }
-._Imagelist{
- display: flex;
- flex-flow:row wrap;
- justify-content: space-between;
-
+._Imagelist {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
 }
-._ImageElement{
-  margin:0.260vw;
+._ImageElement {
+  margin: 0.26vw;
 }
-._ImageElement ._Image{
+._ImageElement ._Image {
   box-sizing: border-box;
   width: 8.59vw;
   height: 5vw;
   border-radius: 0.26vw;
   border: solid 0.052vw #333333;
 }
-._ImageElement ._Label{
+._ImageElement ._Label {
   margin-top: 0.104vw;
   text-align: center;
   width: 100%;
 }
-._ImageActive{
-  border: 0.260vw solid #e72870 !important;
+._ImageActive {
+  border: 0.26vw solid #e72870 !important;
 }
 
-._ChangeImage{
+._ChangeImage {
   margin-top: 0.781vw;
   border: solid 0.052vw #4d4d4d;
   background-color: #3d3d3d;
-  border-radius: 0.260vw;
+  border-radius: 0.26vw;
 }
-._ChangeImage ._Img{
+._ChangeImage ._Img {
   width: 7.396vw;
   height: 4.167vw;
-  border-radius: 0.260vw;
-  
-
-} 
-._ChangeImage ._ChangeButtonFrame{
+  border-radius: 0.26vw;
+}
+._ChangeImage ._ChangeButtonFrame {
   width: 100%;
-  
 }
-._ChangeImage ._ChangeButtonFrame img{
-
+._ChangeImage ._ChangeButtonFrame img {
 }
 
-._ChangeImage ._ChangeButtonFrame ._ChangeButton{
+._ChangeImage ._ChangeButtonFrame ._ChangeButton {
   border-radius: 1.302vw;
   font-size: 0.729vw;
-  padding: 0.260vw 0.521vw;
+  padding: 0.26vw 0.521vw;
   cursor: pointer;
   background-image: linear-gradient(81deg, #e72870 1%, #e76161 100%);
 }
@@ -441,145 +430,136 @@ outline: none;
   margin-left: 0.521vw;
 }
 
-._MiniInput{
+._MiniInput {
   font-size: 0.729vw;
-  
 }
 
-._MiniInput ._InputFrame{
-    margin-top: 0.260vw;
-    width: 5.208vw;
-    
-    background: #242424;
-    height: 1.563vw;
-    border-radius: 0.260vw ;
-    box-shadow: 0 0 0.521vw 0 rgba(0, 0, 0, 0.2);
+._MiniInput ._InputFrame {
+  margin-top: 0.26vw;
+  width: 5.208vw;
+
+  background: #242424;
+  height: 1.563vw;
+  border-radius: 0.26vw;
+  box-shadow: 0 0 0.521vw 0 rgba(0, 0, 0, 0.2);
 }
-._MiniInput ._InputFrame input{
+._MiniInput ._InputFrame input {
   width: 100%;
   font-size: 0.729vw;
   outline: none;
   background: transparent;
   border: none;
   height: 100%;
-  padding:0.260vw 0.521vw;
+  padding: 0.26vw 0.521vw;
   color: white;
 }
-._MiniInput ._UpDownButtons{
+._MiniInput ._UpDownButtons {
   margin-right: 0.521vw;
 }
-._MiniInput ._UpDownButtons img{
-    width: 0.521vw;
-    margin: 0.130vw;
-    cursor: pointer;
+._MiniInput ._UpDownButtons img {
+  width: 0.521vw;
+  margin: 0.13vw;
+  cursor: pointer;
 }
-._MiniInput ._UpDownButtons ._Down{
-  transform: rotateZ(180deg) translateX(0.0vw);
-}
-
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
+._MiniInput ._UpDownButtons ._Down {
+  transform: rotateZ(180deg) translateX(0vw);
 }
 
-input[type=number] {
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type="number"] {
   -moz-appearance: textfield;
 }
 
-._ImageSettings ._WidthHeight{
+._ImageSettings ._WidthHeight {
   margin-top: 1.042vw;
 }
-._LinkUnlink{
-  
+._LinkUnlink {
   margin: 0 0.401vw;
   padding: 0.321vw;
-  
 }
-._LinkUnlink img{
+._LinkUnlink img {
   width: 1.042vw;
   height: 1.042vw;
   cursor: pointer;
 }
 
-
-._FrameInput{
-   font-size: 0.729vw;
-}._FrameInput ._InputWrap{
-  margin-top: 0.260vw;
+._FrameInput {
+  font-size: 0.729vw;
 }
-._FrameInput ._InputWrap ._OuterShape{
+._FrameInput ._InputWrap {
+  margin-top: 0.26vw;
+}
+._FrameInput ._InputWrap ._OuterShape {
   width: 1.563vw;
   height: 1.563vw;
   /* background: red; */
-  margin: 0 0.260vw;
+  margin: 0 0.26vw;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
 }
 
-._FrameInput ._InputWrap ._OuterShape ._InnerShape{
+._FrameInput ._InputWrap ._OuterShape ._InnerShape {
   box-sizing: border-box;
   width: 0.833vw;
   height: 0.833vw;
   border: 0.109vw solid #e6e6e6;
 }
-._FrameInput ._InputWrap ._OuterShapeActive{
+._FrameInput ._InputWrap ._OuterShapeActive {
   background: #242424;
-  border-radius: 0.260vw;
+  border-radius: 0.26vw;
 }
-._FrameInput ._InputWrap ._OuterShapeActive ._InnerShape{
-
+._FrameInput ._InputWrap ._OuterShapeActive ._InnerShape {
   border: 0.109vw solid #e7416a;
 }
-._FrameInput ._InputWrap ._OuterShape:hover ._InnerShape{
+._FrameInput ._InputWrap ._OuterShape:hover ._InnerShape {
   border: 0.109vw solid #e7416a;
 }
 
 ._SliderInput {
-font-size: 0.729vw;
-margin-top: 0.460vw;
+  font-size: 0.729vw;
+  margin-top: 0.46vw;
 }
-._SliderInput ._Input{
-    /* height: 0.521vw; */
-
-} 
-._SliderInput ._Input ._Number{
+._SliderInput ._Input {
+  /* height: 0.521vw; */
+}
+._SliderInput ._Input ._Number {
   width: 2.083vw;
   height: 1.563vw;
-  border-radius: 0.260vw;
+  border-radius: 0.26vw;
   background-color: #242424;
   border: none;
   font-size: 0.729vw;
   text-align: center;
   color: #e6e6e6;
-  box-shadow: 0 0 0.521vw 0 rgba(0, 0, 0, 0.2);  
-
+  box-shadow: 0 0 0.521vw 0 rgba(0, 0, 0, 0.2);
 }
-._TextControl{
-  position:fixed ;
+._TextControl {
+  position: fixed;
   display: none;
 }
 
-
-
-._ObjectLabel{
-  background:#e72870;
+._ObjectLabel {
+  background: #e72870;
   color: white;
   padding: 0 0.417vw;
   font-size: 12px;
-
 }
-._MiniToggle img{
+._MiniToggle img {
   width: 1.563vw;
   height: 1.563vw;
 }
-._MiniToggle{
-  margin: 0 0.260vw;
+._MiniToggle {
+  margin: 0 0.26vw;
   cursor: pointer;
 }
 
-._FontButtons{
+._FontButtons {
   margin-top: 1.042vw;
 }
 
@@ -631,55 +611,48 @@ background-color: #9a905d;
 }
 **/
 
-._TextControl{
+._TextControl {
   /* backgrond: red; */
-  width: 12.500vw;
+  width: 12.5vw;
   height: 1.875vw;
 
   /* justify-content: space-around; */
   align-items: center;
   flex-flow: row nowrap;
-
-  
 }
 
-._TextControl ._MergeTag{
-  position: absolute;
-
-  width: 7.500vw;
+._TextControl ._MergeTag {
+  /* position: absolute; */
+  display: flex;
+  width: 7.5vw;
   height: 1.875vw;
   font-size: 0.729vw;
   border-radius: 0.938vw;
   display: flex;
-  justify-content:space-around;
+  justify-content: space-around;
   cursor: pointer;
-  padding:0.417vw 0.521vw ;
+  padding: 0.417vw 0.521vw;
   align-items: center;
   box-shadow: 0 0 0.521vw 0 rgba(230, 230, 230, 0.16);
   background: linear-gradient(75deg, #e72870 3%, #e76161 97%);
-
 }
 
-
-._TextControl img{
+._TextControl img {
   width: 3.9vw;
 }
-._TextControl img:nth-child(3){
-  transform: translateX(10px);
-}
 
-._MergeTag img{
+._MergeTag img {
   width: 1.063vw;
 }
-._MergeTag_Active{
+._MergeTag_Active {
   background: #e6e6e6 !important;
   border: solid 0.104vw #e7416a !important;
-  color:  #e7416a;
+  color: #e7416a;
 }
-._MergeTagOption{
+._MergeTagOption {
   position: absolute;
-  top:2.004vw ;
- width: 7.500vw;
+  top: 2.004vw;
+  width: 7.5vw;
   font-size: 0.729vw;
   color: #333333;
   background: #e6e6e6;
@@ -688,14 +661,14 @@ background-color: #9a905d;
   line-height: 1.9;
 }
 
-._ImageControl{
-  position: fixed;
+._ImageControl {
+  width: 13.5vw !important;
 }
-._ChangeImageButton{
+._ChangeImageButton {
   width: 8.5vw !important;
 }
 
-._ChooseImage{
+._ChooseImage {
   position: absolute;
   top: 0;
   left: 0;
@@ -705,12 +678,19 @@ background-color: #9a905d;
   z-index: 3;
 }
 
-._ChooseImage ._ChooseBack{
+._ChooseImage ._Image {
+  width: 9.5vw !important;
+}
+._ChooseImage ._SearchInput {
+  width: 12vw !important;
+}
+
+._ChooseImage ._ChooseBack {
   font-size: 0.938vw;
   cursor: pointer;
 }
 
-._DragHandle{
+._DragHandle {
   height: 0.885vw;
   width: 1vw;
   margin: 0 0.729vw;
@@ -718,4 +698,72 @@ background-color: #9a905d;
   cursor: default;
   background: red;
   display: inline-block;
+}
+
+._ControlIcons {
+  width: 2.188vw !important;
+  height: 2.188vw !important;
+  margin: 0.26vw;
+  cursor: pointer;
+}
+
+._ChooseImageTag {
+  position: relative;
+  margin: 0.781vw 0;
+  justify-content: space-between;
+}
+._ChooseImageTag ._ChooseImageTagType {
+  width: 8.021vw;
+  height: 4.531vw;
+  background: #242424;
+  border-radius: 0.26vw;
+  border: solid 0.052vw #333333;
+  cursor: pointer;
+}
+
+._ChooseImageTag ._OR {
+  width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  border: 0.052vw solid #4d4d4d;
+}
+
+._ChooseImageTag ._OR ._ORInner {
+  font-size: 0.625vw;
+  padding: 0.26vw;
+  background: #3d3d3d;
+}
+
+._ChooseImageTag ._MergeTag {
+  font-size: 0.729vw;
+  color: #e7416a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+._ChooseImageTag ._Selected {
+  border: solid 0.104vw #e7416a !important;
+}
+._ChooseImageTag ._ImageTag {
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  background-size: contain !important;
+  font-size: 0.729vw;
+}
+._ChooseImageTag ._ImageTag::before {
+  content: "";
+  width: calc(100% - 0.521vw);
+  height: calc(100% - 0.521vw);
+  position: absolute;
+  border-radius: 0.26vw;
+  border: dashed 0.12vw #333333;
+}
+
+._ChooseImageTag ._Selected ::before {
+  border: none !important;
 }

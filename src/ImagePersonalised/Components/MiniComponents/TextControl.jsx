@@ -31,8 +31,14 @@ export default function TextControl(props){
 
         </div>
     
-        {/* <img src={props.isOpen?I.settingsActive:I.settingsNormal} alt="_d" /> */}
-        {/* <img src={I.deleteNormal} alt="_d" /> */}
+        <img src={props.isOpen?I._SettingsActive:I._SettingsNormal} onClick={
+            ()=>{
+                props.onOpen({id:props.id, isOpen:!props.isOpen})
+            }
+        } alt="_d" className="_ControlIcons"/>
+        <img src={I._Delete} alt="_d" className={"_ControlIcons"} onClick={()=>{
+            props.onDelete({object:props.object, id:props.id})
+        }}/>
       
   
     </>)

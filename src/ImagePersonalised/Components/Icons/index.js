@@ -34,29 +34,33 @@ import settings from "./ico/settings.svg";
 import settingsActive from "./ico/settingsActive.svg";
 import settingsNormal from "./ico/settingsNormal.svg";
 import deleteNormal from "./ico/deleteNormal.svg";
-import imageDefault from "./ico/imageDefault.png"
+import _Delete from "./ico/_Delete.svg";
+import _SettingsActive from "./ico/_SettingsActive.svg";
+import _SettingsNormal from "./ico/_SettingsNormal.svg";
+import imageDefault from "./ico/imageDefault.png";
+import logoImage from "./ico/logoImage.png";
+import profileImage from "./ico/profileImage.png";
 
-import boldTextActive from "./ico/text/boldTextActive.svg"
-import boldTextWhite from "./ico/text/boldTextWhite.svg"
-import centerAlignActive from "./ico/text/centerAlignActive.svg"
-import centerAlignWhite from "./ico/text/centerAlignWhite.svg"
-import fontColorActive from "./ico/text/fontColorActive.svg"
-import fontColorWhite from "./ico/text/fontColorWhite.svg"
-import fontStrokeColorActive from "./ico/text/fontStrokeColorActive.svg"
-import fontStrokeColorWhite from "./ico/text/fontStrokeColorWhite.svg"
-import italicTextActive from "./ico/text/italicTextActive.svg"
-import italicTextWhite from "./ico/text/italicTextWhite.svg"
-import leftAlignActive from "./ico/text/leftAlignActive.svg"
-import leftAlignWhite from "./ico/text/leftAlignWhite.svg"
-import rightAlignActive from "./ico/text/rightAlignActive.svg"
-import rightAlignWhite from "./ico/text/rightAlignWhite.svg"
-import strikethroughTextActive from "./ico/text/strikethroughTextActive.svg"
-import strikethroughTextWhite from "./ico/text/strikethroughTextWhite.svg"
-import textBackgroundActive from "./ico/text/textBackgroundActive.svg"
-import textBackgroundWhite from "./ico/text/textBackgroundWhite.svg"
-import underlineTextActive from "./ico/text/underlineTextActive.svg"
-import underlineTextWhite from "./ico/text/underlineTextWhite.svg"
-
+import boldTextActive from "./ico/text/boldTextActive.svg";
+import boldTextWhite from "./ico/text/boldTextWhite.svg";
+import centerAlignActive from "./ico/text/centerAlignActive.svg";
+import centerAlignWhite from "./ico/text/centerAlignWhite.svg";
+import fontColorActive from "./ico/text/fontColorActive.svg";
+import fontColorWhite from "./ico/text/fontColorWhite.svg";
+import fontStrokeColorActive from "./ico/text/fontStrokeColorActive.svg";
+import fontStrokeColorWhite from "./ico/text/fontStrokeColorWhite.svg";
+import italicTextActive from "./ico/text/italicTextActive.svg";
+import italicTextWhite from "./ico/text/italicTextWhite.svg";
+import leftAlignActive from "./ico/text/leftAlignActive.svg";
+import leftAlignWhite from "./ico/text/leftAlignWhite.svg";
+import rightAlignActive from "./ico/text/rightAlignActive.svg";
+import rightAlignWhite from "./ico/text/rightAlignWhite.svg";
+import strikethroughTextActive from "./ico/text/strikethroughTextActive.svg";
+import strikethroughTextWhite from "./ico/text/strikethroughTextWhite.svg";
+import textBackgroundActive from "./ico/text/textBackgroundActive.svg";
+import textBackgroundWhite from "./ico/text/textBackgroundWhite.svg";
+import underlineTextActive from "./ico/text/underlineTextActive.svg";
+import underlineTextWhite from "./ico/text/underlineTextWhite.svg";
 
 const textIcons = {
   boldTextActive,
@@ -79,8 +83,7 @@ const textIcons = {
   textBackgroundWhite,
   underlineTextActive,
   underlineTextWhite,
-  
-}
+};
 
 export default {
   ...textIcons,
@@ -120,5 +123,10 @@ export default {
   settingsActive,
   settingsNormal,
   deleteNormal,
-  imageDefault
+  _Delete,
+  _SettingsActive,
+  _SettingsNormal,
+  imageDefault,
+  logoImage,
+  profileImage,
 };

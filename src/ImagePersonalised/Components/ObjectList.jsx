@@ -22,7 +22,7 @@ const SortableList = SortableContainer(({items}) => {
         <div className="_ObjectList" >
             <>
         {items.map((obj, index) => (
-         <SortableItem key={`${index+uuid()}`} index={index} obj={obj}/>
+         <SortableItem key={`${index+uuid()}`} lockAxis={"y"} axis={'y'} index={index} obj={obj}/>
          
         ))}
       
