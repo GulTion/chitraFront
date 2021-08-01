@@ -117,7 +117,7 @@ function ObjectTab({ icon, title, isOpen, ...props }) {
         {isOpen ? <Children {...props} /> : null}
       </div>
       {props.type === "text" && (
-        <div className="_TextControl" id={`_${props.id}-textControl`}>
+        <div className="_TextControl" id={`_${props.id}-control`}>
           <TextControl
             id={props.id}
             onDelete={(e) => props.onDelete(e)}
@@ -128,10 +128,7 @@ function ObjectTab({ icon, title, isOpen, ...props }) {
         </div>
       )}
       {props.type === "image" && (
-        <div
-          className="_TextControl _ImageControl"
-          id={`_${props.id}-imageControl`}
-        >
+        <div className="_TextControl _ImageControl" id={`_${props.id}-control`}>
           <ImageControl
             id={props.id}
             onDelete={(e) => props.onDelete(e)}
@@ -142,10 +139,7 @@ function ObjectTab({ icon, title, isOpen, ...props }) {
         </div>
       )}
       {props.type === "logo" && (
-        <div
-          className="_TextControl _ImageControl"
-          id={`_${props.id}-imageControl`}
-        >
+        <div className="_TextControl _ImageControl" id={`_${props.id}-control`}>
           <LogoControl
             mergeTagText="logo"
             id={props.id}
@@ -157,10 +151,7 @@ function ObjectTab({ icon, title, isOpen, ...props }) {
         </div>
       )}
       {props.type === "profile" && (
-        <div
-          className="_TextControl _ImageControl"
-          id={`_${props.id}-imageControl`}
-        >
+        <div className="_TextControl _ImageControl" id={`_${props.id}-control`}>
           <LogoControl
             mergeTagText="profile"
             id={props.id}
@@ -172,10 +163,7 @@ function ObjectTab({ icon, title, isOpen, ...props }) {
         </div>
       )}
       {props.type === "website" && (
-        <div
-          className="_TextControl _ImageControl"
-          id={`_${props.id}-imageControl`}
-        >
+        <div className="_TextControl _ImageControl" id={`_${props.id}-control`}>
           <LogoControl
             mergeTagText="Website"
             id={props.id}

@@ -40,6 +40,7 @@ import _SettingsNormal from "./ico/_SettingsNormal.svg";
 import imageDefault from "./ico/imageDefault.png";
 import logoImage from "./ico/logoImage.png";
 import websiteImage from "./ico/websiteImage.png";
+import profileImage from "./ico/profileImage.png";
 
 import boldTextActive from "./ico/text/boldTextActive.svg";
 import boldTextWhite from "./ico/text/boldTextWhite.svg";
@@ -129,4 +130,5 @@ export default {
   imageDefault,
   logoImage,
   websiteImage,
+  profileImage,
 };

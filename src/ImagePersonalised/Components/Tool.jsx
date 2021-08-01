@@ -10,6 +10,10 @@ import uuid from "uuid-random";
 import TextSettings from "./TextSettings";
 import ImageSettings from "./ImageSettings";
 import LogoSettings from "./LogoSettings";
+import { fabric } from "fabric";
+// import { log } from "fabric/fabric-impl";
+
+const { log } = console;
 
 const Tabs = ({ tabList }) => {
   return (
@@ -41,23 +45,27 @@ const Input = ({ onChange, value, onBlur }) => {
   );
 };
 
-const UnRedo = ({ onUndo, onRedo }) => {
+const UnRedo = ({ onUndo, onRedo, isUndo, isRedo }) => {
   return (
     <div className="_UnRedo d-flex flex-row _Tabs">
-      <div
-        className={`d-flex flex-row justify-content-center align-items-center _Tab`}
-        onClick={onUndo}
-      >
-        <img src={I.undo} alt={"undo"} />
-        {"Undo"}
-      </div>
-      <div
-        className={`d-flex flex-row justify-content-center align-items-center _Tab`}
-        onClick={onRedo}
-      >
-        <img src={I.redo} alt={"Redo"} />
-        {"Redo"}
-      </div>
+      {isUndo || (
+        <div
+          className={`d-flex flex-row justify-content-center align-items-center _Tab`}
+          onClick={onUndo}
+        >
+          <img src={I.undo} alt={"undo"} />
+          {"Undo"}
+        </div>
+      )}
+      {isRedo || (
+        <div
+          className={`d-flex flex-row justify-content-center align-items-center _Tab`}
+          onClick={onRedo}
+        >
+          <img src={I.redo} alt={"Redo"} />
+          {"Redo"}
+        </div>
+      )}
     </div>
   );
 };
@@ -101,6 +109,7 @@ function Tool(props) {
           type: "logo",
           title: "untitled logo 1",
           imageWidth: 218,
+          imageSrc: I.logoImage,
           imageHeight: 116,
           element: (object, frame) => (
             <LogoSettings
@@ -116,12 +125,12 @@ function Tool(props) {
     },
     {
       icon: I.profile,
-      text: "Profile",
+      text: "profile",
       onClick: () => {
         props.addObject({
           isOpen: false,
           type: "profile",
-          title: "untitled profile 1",
+          title: "untitled Profile 1",
           textName: "Profile",
           imageSrc: I.profileImage,
           imageWidth: 118,
@@ -131,7 +140,7 @@ function Tool(props) {
               chooseImageTagText={"Profile"}
               object={object}
               frame={frame}
-              imageSrc={I.profileImage}
+              imageSrc={I.profile}
             />
           ),
           addObjectToCanvas: addLogoToCanvas,
@@ -167,10 +176,61 @@ function Tool(props) {
     <div className="d-flex justify-content-between align-items-center _Tool">
       <Input value={value} onChange={(e) => setValue(e.target.value)} />
       <Tabs tabList={TabData} />
-      <UnRedo onUndo={() => {}} onRedo={() => {}} />
+      <UnRedo
+        isRedo={props.undoRedo.arr.length === props.undoRedo.arr.pointer + 1}
+        isUndo={props.undoRedo.arr.pointer === -1}
+        onUndo={() => {
+          let { canvas } = document._;
+          // canvas.undo();
+          let prev = props.undoRedo.arr[props.undoRedo.pointer - 1];
+          if (prev !== undefined) {
+            // alert("undo");
+            let currnet = canvas._objects.find((e) => e.id === prev.id);
+            if (currnet) {
+              log("CUREENT");
+              log(prev);
+              currnet.set(prev);
+              // canvas.discardActiveObject().renderAll();
+              // canvas.remove(currnet);
+              // let klass = fabric.util.getKlass(currnet.type);
+              // canvas.add(klass.fromObject(prev));
+              // canvas.add({ ...currnet, ...prev });
+              canvas.renderAll();
+              props.doUndo(props.undoRedo.pointer - 1);
+            }
+          }
+        }}
+        onRedo={() => {
+          let { canvas } = document._;
+          // canvas.undo();
+          let next = props.undoRedo.arr[props.undoRedo.pointer + 1];
+          if (next !== undefined) {
+            // alert("undo");
+            let currnet = canvas._objects.find((e) => e.id === next.id);
+            if (currnet) {
+              log("CUREENT");
+              log(next);
+              currnet.set(next);
+              // canvas.discardActiveObject().renderAll();
+              // canvas.remove(currnet);
+              // let klass = fabric.util.getKlass(currnet.type);
+              // canvas.add(klass.fromObject(next));
+              // canvas.add({ ...currnet, ...next });
+              canvas.renderAll();
+              props.doUndo(props.undoRedo.pointer + 1);
+            }
+          }
+        }}
+      />
     </div>
   );
 }
+
+const mstp = (state) => {
+  return {
+    undoRedo: state.undoRedo,
+  };
+};
 
 const mptf = (dispatch) => {
   return {
@@ -190,7 +250,14 @@ const mptf = (dispatch) => {
         text,
         object,
         frame = null,
-      } = addObjectToCanvas(id, textName, imageSrc, imageWidth, imageHeight);
+      } = addObjectToCanvas({
+        id,
+        textName,
+        imageSrc,
+        imageWidth,
+        imageHeight,
+        type,
+      });
       dispatch({
         type: "ADD_OBJECT",
         data: {
@@ -208,10 +275,10 @@ const mptf = (dispatch) => {
         },
       });
     },
+
+    doUndo: (pointer) => dispatch({ type: "DO_UNDO", data: pointer }),
     // addTextToObjectList:action=>dispatch(action),
     // openObjectOnSelect:({id,select})=>dispatch({type:'OBJECT_LIST_CLOSE', data:{id, isOpen:select}})
   };
 };
-export default connect(() => {
-  return {};
-}, mptf)(Tool);
+export default connect(mstp, mptf)(Tool);

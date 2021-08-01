@@ -13,6 +13,7 @@
         "array-move": "^3.0.1",
         "axios": "^0.21.1",
         "fabric": "^4.5.1",
+        "fabric-history": "^1.6.0",
         "impress-react-component": "^1.0.4",
         "javascript-time-ago": "^2.3.5",
         "node-sass": "^6.0.0",

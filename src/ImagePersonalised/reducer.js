@@ -2,7 +2,7 @@ import React from "react";
 import ArtBoardSettings from "./Components/ArtBoardSettings";
 import I from "./Components/Icons/";
 import uuid from "uuid-random";
-import arrayMove from 'array-move';
+import arrayMove from "array-move";
 
 const istate = {
   canvas: {
@@ -13,7 +13,11 @@ const istate = {
       name: "#ffffff",
     },
   },
-  isChooseImageActive:false,
+  isChooseImageActive: false,
+  undoRedo: {
+    arr: [],
+    pointer: -1,
+  },
 
   objectList: [
     {
@@ -23,9 +27,8 @@ const istate = {
       id: uuid(),
       title: "Artboad Settings",
       unique: true,
-    }
+    },
   ],
-
 
   textSettings: {},
 };
@@ -52,20 +55,18 @@ export default (state = istate, action) => {
       //     log(e.object?.id,document._.canvas.getObjects().indexOf(e.object))
       //     document._.canvas.moveTo(e.object, n--);
       //     log(e.object.id,document._.canvas.getObjects().indexOf(e.object))
-  
 
       //   }
-  
+
       // })
       // document._.canvas.renderAll();
       // // log(data);
-    
+
       return {
         ...state,
-        objectList:sorted1 
+        objectList: sorted1,
       };
     case "OBJECT_LIST_CLOSE":
-
       return {
         ...state,
         objectList: state.objectList.map((_) => {
@@ -76,50 +77,99 @@ export default (state = istate, action) => {
           return { ..._, isOpen: false };
         }),
       };
-    case 'OBJECT_DELETE':
-        // log(data)
-        
-        // document._['tabOperation'] = 'delete'
-        return {
-            ...state,
-            objectList:state.objectList.filter(e=>e.id!=data.id)
-        }
-    case 'OBJECT_RENAME':
-        return{
-            ...state,
-            objectList:state.objectList.map(e=>{
-                if(e.id===data.id){
-                    return {
-                        ...e,
-                        title:data.value
-                    }
-                }
-                return e
-            })
-        }
-    case 'CHOOSE_IMAGE_ACTIVATE':
+    case "OBJECT_DELETE":
+      // log(data)
+
+      // document._['tabOperation'] = 'delete'
       return {
         ...state,
-        isChooseImageActive:data
-      }
+        objectList: state.objectList.filter((e) => e.id != data.id),
+      };
+    case "OBJECT_RENAME":
+      return {
+        ...state,
+        objectList: state.objectList.map((e) => {
+          if (e.id === data.id) {
+            return {
+              ...e,
+              title: data.value,
+            };
+          }
+          return e;
+        }),
+      };
+    case "CHOOSE_IMAGE_ACTIVATE":
+      return {
+        ...state,
+        isChooseImageActive: data,
+      };
 
-    case 'SORT_LIST':
+    case "SORT_LIST":
       // log(data)
       // document._.canvas.moveTo(state.objectList[data.oldIndex].object, state.objectList.length-data.newIndex-1);
       let sorted = arrayMove(state.objectList, data.oldIndex, data.newIndex);
-      sorted.forEach((e,i)=>{
-        if(i==sorted.length-1){
+      sorted.forEach((e, i) => {
+        if (i == sorted.length - 1) {
           return;
         }
-        document._.canvas.moveTo(e.object, sorted.length-i);
-      })
+        document._.canvas.moveTo(e.object, sorted.length - i);
+      });
       document._.canvas.renderAll();
       return {
         ...state,
-        objectList:sorted
-      }
-    
+        objectList: sorted,
+      };
 
+    case "ADD_UNDO":
+      const { arr, pointer } = state.undoRedo;
+      if (arr.length == pointer + 1) {
+        let newArr = [...arr, data];
+        let newPointer = pointer + 1;
+        return {
+          ...state,
+          undoRedo: {
+            arr: newArr,
+            pointer: newPointer,
+          },
+        };
+      } else {
+        let newArr = arr.splice(0, pointer);
+        newArr.push(data);
+        let newPointer = pointer + 1;
+        return {
+          ...state,
+          undoRedo: {
+            arr: newArr,
+            pointer: newPointer,
+          },
+        };
+      }
+
+    case "DO_UNDO":
+      return {
+        ...state,
+        undoRedo: {
+          ...state.undoRedo,
+          pointer: data,
+        },
+      };
+
+    case "MAKE_STATE":
+      return {
+        ...state,
+        canvas: data.canvas,
+        objectList: [
+          ...data.objectList,
+          {
+            element: <ArtBoardSettings />,
+            icon: I.artboard,
+            isOpen: true,
+            id: uuid(),
+            title: "Artboad Settings",
+            unique: true,
+          },
+        ],
+      };
     default:
       return state;
   }
