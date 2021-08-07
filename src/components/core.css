@@ -1,22 +1,33 @@
-.drawingCard:nth-child(2n+1) {
-  background:repeating-linear-gradient(45deg, rgba(255,255,255,0.1) 0px,rgba(255,255,255,0.1) 10px,rgba(255,255,255,0.3) 10px,rgba(255,255,255,0.3) 20px) !important;
+.drawingCard:nth-child(2n + 1) {
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.1) 0px,
+    rgba(255, 255, 255, 0.1) 10px,
+    rgba(255, 255, 255, 0.3) 10px,
+    rgba(255, 255, 255, 0.3) 20px
+  ) !important;
   color: white;
 }
 .drawingCard:nth-child(2n) {
-  background:repeating-linear-gradient(135deg, rgba(255,255,255,0.1) 0px,rgba(255,255,255,0.1) 10px,rgba(255,255,255,0.3) 10px,rgba(255,255,255,0.3) 20px) !important;
+  background: repeating-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0px,
+    rgba(255, 255, 255, 0.1) 10px,
+    rgba(255, 255, 255, 0.3) 10px,
+    rgba(255, 255, 255, 0.3) 20px
+  ) !important;
   color: white;
 }
-.drawingCard .btn{
+.drawingCard .btn {
   background: none;
   border-width: 2px;
   font-weight: 600;
 }
 
-.drawingCard .card-footer{
-  background: rgba(255,255,255,0.3);
+.drawingCard .card-footer {
+  background: rgba(255, 255, 255, 0.3);
   font-size: 0.9em;
 }
-
 
 .Auth {
   background-color: #4158d0;
@@ -29,25 +40,25 @@
 }
 .DashBoard {
   height: 100%;
-  background-color: #FF3CAC;
-  background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
-  
+  background-color: #ff3cac;
+  background-image: linear-gradient(
+    225deg,
+    #ff3cac 0%,
+    #784ba0 50%,
+    #2b86c5 100%
+  );
 }
 
-.DashBoard input{
+.DashBoard input {
   background: transparent;
   border: 2px solid white;
   color: white;
   font-weight: 600;
-
-
-  
-
 }
-.DashBoard input::placeholder{
-  color:white;
+.DashBoard input::placeholder {
+  color: white;
 }
-.DashBoard input:focus{
+.DashBoard input:focus {
   background: rgba(255, 255, 255, 0.3);
   outline: none;
   /* transition-duration: 0.5s; */
@@ -55,8 +66,6 @@
   font-size: 1.5em;
   color: white;
 }
-
-
 
 .NavBar {
   background-color: #21d4fd;
@@ -76,6 +85,11 @@
 }
 .NavBar .btn:hover {
   color: white;
-  background:repeating-linear-gradient(45deg, rgba(255,255,255,0.1) 0px,rgba(255,255,255,0.1) 10px,rgba(255,255,255,0.3) 10px,rgba(255,255,255,0.3) 20px) !important;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.1) 0px,
+    rgba(255, 255, 255, 0.1) 10px,
+    rgba(255, 255, 255, 0.3) 10px,
+    rgba(255, 255, 255, 0.3) 20px
+  ) !important;
 }
-

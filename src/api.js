@@ -18,8 +18,8 @@ const subscribeForDrawingsList = (cb) => {
   socket.emit("subscribeForDrawingList", { key: _key });
 };
 
-const createDrawing =async ({ name, key }) => {
-  await socket.emit("createDrawing", { name, key: key,user:_key });
+const createDrawing = async ({ name, key }) => {
+  await socket.emit("createDrawing", { name, key: key, user: _key });
 };
 
 const publishLine = (line) => {
@@ -76,5 +76,5 @@ export {
   getDrawingById,
   subscribeForDrawingsList,
   subscribeForAllPublishLine,
-  deleteDrawing
+  deleteDrawing,
 };

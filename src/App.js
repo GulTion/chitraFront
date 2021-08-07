@@ -23,7 +23,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       selectedDrawing: { id: "", name: "" },
-      title: db.TITLE
+      title: db.TITLE,
     };
   }
   componentWillMount() {
@@ -63,11 +63,14 @@ class App extends React.Component {
                   </>
                 );
               }}
-            ></Route> 
+            ></Route>
 
-            <Route path="/new/drawings/:drawingId" render={e=> <ExcaliDraw  drawingId={e.match.params.drawingId}/>}>
-             
-            </Route>
+            <Route
+              path="/new/drawings/:drawingId"
+              render={(e) => (
+                <ExcaliDraw drawingId={e.match.params.drawingId} />
+              )}
+            ></Route>
           </Switch>
         </div>
       </Router>

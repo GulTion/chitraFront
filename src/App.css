@@ -1,9 +1,15 @@
-html,body, #root { height: 100%; margin: 0px; padding: 0px; }
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
 
 .App {
   text-align: center;
   height: 100%;
-  display:flex;
+  display: flex;
   flex-flow: column nowrap;
 }
 
@@ -44,13 +50,12 @@ html,body, #root { height: 100%; margin: 0px; padding: 0px; }
 
 /* DrawingLists, ul, DrawingList */
 
-.DrawingLists ul{
+.DrawingLists ul {
   list-style-type: none;
   margin: 0;
-  padding: 0.0em 2em;
-
+  padding: 0em 2em;
 }
-.DrawingLists ul .DrawingList{
+.DrawingLists ul .DrawingList {
   background: #fdfdfd;
   padding: 0.5em 0;
   border-bottom: 1px solid #e2e2e2;
@@ -58,34 +63,28 @@ html,body, #root { height: 100%; margin: 0px; padding: 0px; }
   transition-duration: 300ms;
   font-size: 1.2em;
   font-weight: 600;
-  
-
 }
-.DrawingLists ul .DrawingList:hover{
+.DrawingLists ul .DrawingList:hover {
   background: rgb(236, 236, 236);
 }
-.DrawingLists ul .DrawingList:active{
- 
+.DrawingLists ul .DrawingList:active {
   transition-duration: 00ms;
   background: rgb(212, 212, 212);
   transform: scale(1.5);
 }
-.DrawingList a{
+.DrawingList a {
   display: block;
   color: inherit;
   text-decoration: none;
 }
 
-
-.DrawingForm .form{
-
+.DrawingForm .form {
   display: flex;
   padding: 0.5em 1em;
-  
 }
-.DrawingForm .form input[type="text"]{
+.DrawingForm .form input[type="text"] {
   width: 100%;
-  border:1px solid rgba(0, 0, 0, 0.318);
+  border: 1px solid rgba(0, 0, 0, 0.318);
   font-size: 1.5em;
   padding: 0.25em 1.5em;
   outline: none;
@@ -94,16 +93,16 @@ html,body, #root { height: 100%; margin: 0px; padding: 0px; }
   color: #282c34;
   margin: 0 1em;
 }
-.DrawingForm .form input[type="text"]:focus{
-  box-shadow:inset 0 5px 5px rgba(0, 0, 0, 0.318);
+.DrawingForm .form input[type="text"]:focus {
+  box-shadow: inset 0 5px 5px rgba(0, 0, 0, 0.318);
   border-radius: 10px;
   /* text-shadow: 0 2px 5px rgba(0, 0, 0, 0.318); */
-  border:1px solid rgba(0, 0, 0, 0.13);
+  border: 1px solid rgba(0, 0, 0, 0.13);
 }
 
-.DrawingForm .form input[type="submit"], .NewAdd .save{
-  
-  border:1px solid rgba(0, 0, 0, 0.318);
+.DrawingForm .form input[type="submit"],
+.NewAdd .save {
+  border: 1px solid rgba(0, 0, 0, 0.318);
   font-size: 1.5em;
   padding: 0.25em 1.5em;
   outline: none;
@@ -113,107 +112,99 @@ html,body, #root { height: 100%; margin: 0px; padding: 0px; }
 
   background: none;
 }
-.DrawingForm .form input[type="submit"]:hover,.NewAdd .save:hover{
+.DrawingForm .form input[type="submit"]:hover,
+.NewAdd .save:hover {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.318);
 }
 
-.Drawing{
+.Drawing {
   height: calc(100% - 2em);
-  margin:1em 1em 1em 1em;
+  margin: 1em 1em 1em 1em;
   /* padding-top: 1em;; */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.318);
   display: flex;
   flex-flow: column nowrap;
-  background-color: #00DBDE;
-background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
-
+  background-color: #00dbde;
+  background-image: linear-gradient(90deg, #00dbde 0%, #fc00ff 100%);
 }
 
-
-.NewAdd{
+.NewAdd {
   display: flex;
   flex-flow: column nowrap;
   padding: 1em;
   background: rgba(0, 0, 0, 0.13);
-
 }
-.NewAdd *{
+.NewAdd * {
   font-size: 1em;
   margin-top: 0.5em;
-  border:1px solid rgba(0, 0, 0, 0.318);
+  border: 1px solid rgba(0, 0, 0, 0.318);
   padding: 0.25em 0.5em;
   /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.318); */
   border-radius: 5px;
   transition-duration: 0.5s;
 }
-.NewAdd input{
+.NewAdd input {
   font-size: 1.5em;
 }
-.NewAdd input:focus{
+.NewAdd input:focus {
   outline: none;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.318);
   border: none;
-  
-
 }
-.NewAdd select{
+.NewAdd select {
   width: 100%;
-  margin:0.25em 1em;
-
+  margin: 0.25em 1em;
 }
-.NewAdd .row{
+.NewAdd .row {
   display: flex;
   flex-flow: row;
   justify-content: space-around;
   border: none;
   /* align-items: baseline; */
- 
 }
-.NewAdd .save{
+.NewAdd .save {
   margin-top: 0;
 }
 
 /* ColorBox colorList color */
 
-.ColorBox{
+.ColorBox {
   width: 100%;
 
   /* background: red; */
-  padding:0.25em 0;
-
+  padding: 0.25em 0;
 }
 .ColorBox .colorList {
   display: flex;
   flex-flow: row nowrap;
   padding: 0.25em;
-
 }
-.ColorBox .colorList .color{
-  width: 1.5em;height: 1.5em;
+.ColorBox .colorList .color {
+  width: 1.5em;
+  height: 1.5em;
   border-radius: 50%;
-  margin:0 0.25em;
+  margin: 0 0.25em;
   border: 2px solid white;
-  box-shadow:0 2px 2px rgba(0, 0, 0, 0.253);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.253);
   cursor: pointer;
   transition-duration: 0.5s;
 }
 
-.ColorBox .colorList .color:active{
-  box-shadow:inset 0 5px 5px rgba(0, 0, 0, 0.253);
+.ColorBox .colorList .color:active {
+  box-shadow: inset 0 5px 5px rgba(0, 0, 0, 0.253);
 }
 
 .popup-content {
-background:transparent !important;
-border: none !important;
-padding:none !important;
-width: 70% !important;
+  background: transparent !important;
+  border: none !important;
+  padding: none !important;
+  width: 70% !important;
 }
 
-.NewAdder{
+.NewAdder {
   background: transparent;
-  backdrop-filter:saturate(2) blur(5px);
+  backdrop-filter: saturate(2) blur(5px);
   padding: 1em 3em;
-
 }
 .NewAdder input {
   width: 100%;
@@ -223,8 +214,7 @@ width: 70% !important;
   color: white;
   padding: 0.5em 1em;
   outline: none;
-
 }
-.NewAdder .btn{
+.NewAdder .btn {
   margin-top: 1em;
 }

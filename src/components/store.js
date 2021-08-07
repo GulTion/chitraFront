@@ -1,3 +1,3 @@
-import store from "../Reducer/store"
+import store from "../Reducer/store";
 
-export default store
+export default store;

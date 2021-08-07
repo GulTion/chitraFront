@@ -8,9 +8,10 @@ const NavBar = ({ title, btn, color }) => {
     >
       <h1 className="text-light display-3 float-left">{title}</h1>
       <div className="d-flex align-items-center justify-content-around p-1">
-      {btn?.map((e) => {
-        return e;
-      })}</div>
+        {btn?.map((e) => {
+          return e;
+        })}
+      </div>
     </div>
   );
 };

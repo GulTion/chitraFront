@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-const {log} = console
+import React, { Component } from "react";
+const { log } = console;
 class Canvas extends Component {
   state = {
     lastLength: 0,
@@ -7,17 +7,17 @@ class Canvas extends Component {
 
   componentDidMount() {
     const canvas = this.node;
-    canvas.addEventListener('touchstart', this.handleOnTouchDown,false)
-    canvas.addEventListener('touchmove', this.handleOnTouchMove,false)
-    canvas.addEventListener('touchend', this.handleOnTouchUp,false)
-    canvas.style.width = '100%';
-    canvas.style.height = '100%';
+    canvas.addEventListener("touchstart", this.handleOnTouchDown, false);
+    canvas.addEventListener("touchmove", this.handleOnTouchMove, false);
+    canvas.addEventListener("touchend", this.handleOnTouchUp, false);
+    canvas.style.width = "100%";
+    canvas.style.height = "100%";
     canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
-    this.ctx = canvas.getContext('2d');
+    this.ctx = canvas.getContext("2d");
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     //   log({nextProps})
     //todo: find a better way to see if a coordinate has been applied
     if (nextProps.lines && nextProps.lines.length > this.state.lastLength) {
@@ -51,14 +51,13 @@ class Canvas extends Component {
       return;
     }
 
-
     const rect = this.node.getBoundingClientRect();
     this.ctx.beginPath();
 
     this.lastX = e.clientX - rect.left;
     this.lastY = e.clientY - rect.top;
     this.drawing = true;
-  }
+  };
 
   handleOnMouseMove = (e) => {
     if (this.drawing) {
@@ -86,33 +85,34 @@ class Canvas extends Component {
 
       this.lastX = currentX;
       this.lastY = currentY;
-
     }
-  }
+  };
 
   handleonMouseUp = () => {
     this.drawing = false;
-  }
+  };
 
-
-
-  handleOnTouchDown = (e) =>{
+  handleOnTouchDown = (e) => {
     if (!this.props.drawingEnabled) {
-        return;
-      }
-      const {touches:[a]} = e
-      const rect = this.node.getBoundingClientRect();
-      this.ctx.beginPath();
-  
-      this.lastX = a.clientX - rect.left;
-      this.lastY = a.clientY - rect.top;
-      this.drawing = true;
-      e.preventDefault()
-  }
+      return;
+    }
+    const {
+      touches: [a],
+    } = e;
+    const rect = this.node.getBoundingClientRect();
+    this.ctx.beginPath();
+
+    this.lastX = a.clientX - rect.left;
+    this.lastY = a.clientY - rect.top;
+    this.drawing = true;
+    e.preventDefault();
+  };
 
   handleOnTouchMove = (e) => {
     if (this.drawing) {
-        const {touches:[a]} = e
+      const {
+        touches: [a],
+      } = e;
       const rect = this.node.getBoundingClientRect();
       const currentX = a.clientX - rect.left;
       const currentY = a.clientY - rect.top;
@@ -137,18 +137,17 @@ class Canvas extends Component {
 
       this.lastX = currentX;
       this.lastY = currentY;
-
     }
-    e.preventDefault()
-  }
+    e.preventDefault();
+  };
   handleOnTouchUp = () => {
     this.drawing = false;
-  }
+  };
 
   render() {
     return (
       <canvas
-        ref={node => (this.node = node)}
+        ref={(node) => (this.node = node)}
         style={this.props.canvasStyle}
         onMouseDown={this.handleOnMouseDown}
         onMouseMove={this.handleOnMouseMove}
@@ -163,11 +162,11 @@ class Canvas extends Component {
 }
 
 Canvas.defaultProps = {
-  brushColor: '#000000',
+  brushColor: "#000000",
   lineWidth: 2,
   canvasStyle: {
-    backgroundColor: '#FFFFFF',
-    cursor: 'pointer',
+    backgroundColor: "#FFFFFF",
+    cursor: "pointer",
   },
   drawingEnabled: false,
   lines: [],
