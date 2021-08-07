@@ -50,6 +50,7 @@ export let cropFrameCreate = (object) => {
     visible: false,
   });
   cropFrame._type = 0;
+  object.cropFrame = cropFrame;
   return cropFrame;
 };
 
@@ -161,11 +162,11 @@ export let Events = ({ object, id, frame }) => {
         return;
     }
   });
-
   if (frame) {
     let rect = frame._objects.find((k) => k.type === "rect");
     let lines = frame._objects.filter((k) => k.type === "line");
     frameEvents.forEach((e) => {
+      log(e);
       switch (e) {
         case "scaling":
           frame.on(e, () => {
@@ -226,7 +227,8 @@ export let Events = ({ object, id, frame }) => {
     });
   }
 };
-
+export const URL = "http://34.121.47.255";
+export const TOKEN = () => localStorage.getItem("token");
 export const CommanThings = ({ textName, object, id, frame }) => {
   const { canvas } = document._;
   const text = document.createElement("div");
@@ -239,8 +241,10 @@ export const CommanThings = ({ textName, object, id, frame }) => {
   object._type = textName;
   document.body.appendChild(text);
   object.id = id;
+  object.set({ visible: true });
+  canvas.renderAll();
 
-  Events({ object, id });
+  Events({ object, id, frame });
 
   // object.type = type;
   if (frame) {
@@ -294,8 +298,9 @@ export function addImageToCanvas({ id, type }) {
     }
   );
   let cropFrame = cropFrameCreate(object);
-  CommanThings({ textName: "Image", object, id, frame: cropFrame });
+
   canvas.add(object, cropFrame);
+  CommanThings({ textName: "Image", object, id, frame: cropFrame });
   canvas.renderAll();
 
   return { object: object, frame: cropFrame };

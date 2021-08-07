@@ -5,7 +5,8 @@ import "fabric-history";
 import TextSettings from "./TextSettings";
 import ImageSettings from "./ImageSettings";
 import LogoSettings from "./LogoSettings";
-import { CommanThings } from "../functions";
+import { CommanThings, cropFrameCreate } from "../functions";
+import uuid from "uuid-random";
 
 import I from "./Icons/";
 
@@ -27,6 +28,37 @@ function Canvas(props) {
   const ref1 = useRef();
   const ref3 = useRef();
 
+  let mapForSettings = ({ object, frame }) => {
+    return {
+      text: () => <TextSettings object={object} />,
+      image: () => <ImageSettings object={object} frame={frame} />,
+      logo: () => (
+        <LogoSettings
+          chooseImageTagText={"Logo"}
+          object={object}
+          frame={frame}
+          imageSrc={I.logoImage}
+        />
+      ),
+      profile: () => (
+        <LogoSettings
+          chooseImageTagText={"Profile"}
+          object={object}
+          frame={frame}
+          imageSrc={I.profile}
+        />
+      ),
+      website: () => (
+        <LogoSettings
+          chooseImageTagText={"Website"}
+          object={object}
+          frame={frame}
+          imageSrc={I.websiteImage}
+        />
+      ),
+    };
+  };
+
   const loadFromServer = async (makeState) => {
     let data = await JSON.parse(await localStorage.getItem("save"));
     if (data !== null) {
@@ -44,42 +76,19 @@ function Canvas(props) {
           });
         });
 
-        let mapForSettings = ({ object, frame }) => {
-          return {
-            image: () => <ImageSettings object={object} frame={frame} />,
-            logo: () => (
-              <LogoSettings
-                chooseImageTagText={"Logo"}
-                object={object}
-                frame={frame}
-                imageSrc={I.logoImage}
-              />
-            ),
-            profile: () => (
-              <LogoSettings
-                chooseImageTagText={"Profile"}
-                object={object}
-                frame={frame}
-                imageSrc={I.profile}
-              />
-            ),
-            website: () => (
-              <LogoSettings
-                chooseImageTagText={"Website"}
-                object={object}
-                frame={frame}
-                imageSrc={I.websiteImage}
-              />
-            ),
-          };
-        };
-
         let newStateList = data.app.objectList.map((list) => {
           for (let index = 0; index < canvas._objects.length; index++) {
             let obj = canvas._objects[index];
             if (list.id === obj.id) {
               console.log(obj);
               if (list.type === "text") {
+                CommanThings({
+                  textName: list.type,
+                  object: obj,
+
+                  id: list.id,
+                });
+
                 return {
                   ...list,
                   element: <TextSettings object={obj} />,
@@ -93,6 +102,12 @@ function Canvas(props) {
                 list.type === "website" ||
                 list.type === "profile"
               ) {
+                CommanThings({
+                  textName: list.type,
+                  object: obj,
+                  frame: canvas._objects[index + 1],
+                  id: list.id,
+                });
                 return {
                   ...list,
                   element: mapForSettings({
@@ -113,6 +128,66 @@ function Canvas(props) {
         canvas.renderAll();
       }, 100);
     }
+  };
+
+  const loadFromScene = async (makeState) => {
+    const { canvas } = document._;
+    let data = await JSON.parse(await localStorage.getItem("canvas"));
+    if (data) {
+      canvas.loadFromJSON(JSON.parse(data));
+      setTimeout(() => {
+        let objectList = [];
+        canvas._objects.forEach((obj, i) => {
+          const id = uuid();
+          obj.set({ selectable: false });
+          if (obj.type === "textbox" || obj.type === "image") {
+            obj.set({
+              selectable: true,
+              cornerColor: "#ffffff",
+              borderColor: "#e7416a",
+              cornerStrokeColor: "#e7416a",
+              cornerStyle: "circle",
+              transparentCorners: false,
+              cornerSize: 12,
+            });
+          }
+          if (obj.type === "image") {
+            const frame = cropFrameCreate(obj);
+            CommanThings({ textName: "Image", id, object: obj, frame });
+            objectList.push({
+              type: "image",
+              element: mapForSettings({ object: obj, frame })["image"](),
+              icon: I["image"],
+              isOpen: false,
+              title: `Untitled Image ${i}`,
+              unique: false,
+              object: obj,
+              frame,
+              visible: true,
+              id,
+            });
+          }
+
+          if (obj.type === "textbox") {
+            CommanThings({ textName: "Text", id, object: obj });
+            objectList.push({
+              type: "text",
+              element: mapForSettings({ object: obj })["text"](),
+              icon: I["text"],
+              isOpen: false,
+              title: `Untitled Text ${i}`,
+              unique: false,
+              object: obj,
+              visible: true,
+              id,
+            });
+          }
+
+          makeState({ objectList });
+        });
+      }, 1000);
+    }
+    canvas.renderAll();
   };
 
   const backgroundHandler = (obj) => {
@@ -172,7 +247,8 @@ function Canvas(props) {
       height,
     });
 
-    loadFromServer(props.makeState);
+    // loadFromServer(props.makeState);
+    loadFromScene(props.makeState);
   }, []);
 
   useEffect(() => {

@@ -27,6 +27,7 @@ const istate = {
       id: uuid(),
       title: "Artboad Settings",
       unique: true,
+      visible: true,
     },
   ],
 
@@ -83,7 +84,13 @@ export default (state = istate, action) => {
       // document._['tabOperation'] = 'delete'
       return {
         ...state,
-        objectList: state.objectList.filter((e) => e.id != data.id),
+        objectList: state.objectList.map((e) => {
+          if (e.id === data.id) {
+            return { ...e, visible: false };
+          } else {
+            return { ...e, visible: true };
+          }
+        }),
       };
     case "OBJECT_RENAME":
       return {
@@ -157,7 +164,7 @@ export default (state = istate, action) => {
     case "MAKE_STATE":
       return {
         ...state,
-        canvas: data.canvas,
+        ...data,
         objectList: [
           ...data.objectList,
           {
@@ -167,6 +174,7 @@ export default (state = istate, action) => {
             id: uuid(),
             title: "Artboad Settings",
             unique: true,
+            visible: true,
           },
         ],
       };

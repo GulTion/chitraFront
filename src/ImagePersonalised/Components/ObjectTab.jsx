@@ -40,8 +40,9 @@ function ObjectTab({ icon, title, isOpen, ...props }) {
   ));
 
   return (
-    <>
+    <div style={{ display: props.visible ? "block" : "none" }}>
       <div
+        style={{ display: props.visible ? "" : "none" }}
         className={`d-flex flex-row justify-content-between align-items-center _ObjectTab ${
           isOpen || props.select ? "_ObjectTab_Active" : ""
         }`}
@@ -174,7 +175,7 @@ function ObjectTab({ icon, title, isOpen, ...props }) {
           />
         </div>
       )}
-    </>
+    </div>
   );
 }
 
@@ -182,7 +183,7 @@ const mptf = (dispatch) => {
   return {
     onDelete: ({ object, id }) => {
       const { canvas } = document._;
-      canvas.remove(object);
+      object.set({ visible: false });
       canvas.renderAll();
       dispatch({ type: "OBJECT_DELETE", data: { id } });
     },

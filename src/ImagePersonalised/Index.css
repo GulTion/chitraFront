@@ -205,7 +205,12 @@
 .__First {
   color: #a9a9a9;
 }
-.__Second {
+.__Second label {
+  width: 7vw;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .__Third {
   margin-left: 0.26vw;
@@ -316,6 +321,7 @@
   border: dashed 0.15vw #333333 !important;
 }
 ._ImageTab {
+  overflow-y: scroll;
   font-size: 0.729vw;
 }
 ._ImageTab ._SearchSection {
@@ -350,6 +356,21 @@
   outline: none;
   color: #e6e6e6;
 }
+._LoadMoreButton {
+  width: 100%;
+  height: 3vw;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1vw;
+}
+._innerLoadButton {
+  padding: 0.3vw 0.6vw;
+  border-radius: 1.1vw;
+  background: #242424;
+  cursor: pointer;
+}
 ._DragAndDropImage {
   background-color: #242424;
   width: 100%;
@@ -362,6 +383,10 @@
   align-items: center;
   padding: 0.729vw !important;
 }
+._DragAndDropImage_Active {
+  background: #e72870;
+}
+
 ._DragAndDropImage img {
   height: 1.042vw;
   width: 1.042vw;
@@ -379,23 +404,29 @@
 }
 ._Imagelist {
   display: flex;
+
   flex-flow: row wrap;
   justify-content: space-between;
 }
 ._ImageElement {
   margin: 0.26vw;
+  width: 8.59vw;
 }
 ._ImageElement ._Image {
   box-sizing: border-box;
   width: 8.59vw;
   height: 5vw;
+  cursor: pointer;
   border-radius: 0.26vw;
   border: solid 0.052vw #333333;
 }
 ._ImageElement ._Label {
   margin-top: 0.104vw;
   text-align: center;
-  width: 100%;
+  width: 8.58vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 ._ImageActive {
   border: 0.26vw solid #e72870 !important;
@@ -676,13 +707,17 @@ background-color: #9a905d;
   height: 100%;
   background: #333333;
   z-index: 3;
+  padding: 0.781vw 1.042vw;
 }
 
 ._ChooseImage ._Image {
-  width: 9.5vw !important;
+  /* width: 9.5vw !important; */
 }
 ._ChooseImage ._SearchInput {
   width: 12vw !important;
+}
+._ChooseImage ._Imagelist {
+  /* padding: 0.521vw; */
 }
 
 ._ChooseImage ._ChooseBack {
@@ -766,4 +801,25 @@ background-color: #9a905d;
 
 ._ChooseImageTag ._Selected ::before {
   border: none !important;
+}
+
+._Now {
+  position: relative;
+}
+._Now_List {
+  position: absolute;
+  display: flex;
+  flex-flow: column nowrap;
+  background: #3d3d3d;
+  width: 100%;
+  border-radius: 0.9vw;
+  z-index: 1;
+  margin-top: 0.2vw;
+  padding: 0.521vw;
+  box-shadow: 0 0.2vw 0.2vw rgba(0, 0, 0, 0.5);
+  border: 0.052vw solid #e72870;
+}
+._Now_List ._Now_Item:hover {
+  color: #e72870;
+  cursor: pointer;
 }

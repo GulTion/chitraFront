@@ -187,7 +187,6 @@ function Tool(props) {
             // alert("undo");
             let currnet = canvas._objects.find((e) => e.id === prev.id);
             if (currnet) {
-              log("CUREENT");
               log(prev);
               currnet.set(prev);
               // canvas.discardActiveObject().renderAll();
@@ -197,6 +196,10 @@ function Tool(props) {
               // canvas.add({ ...currnet, ...prev });
               canvas.renderAll();
               props.doUndo(props.undoRedo.pointer - 1);
+            }
+            if (prev.visible) {
+              props.setVisible({ id: "asf" });
+              // log("CURRENT", currnet.visible, "PREV", prev.visible);
             }
           }
         }}
@@ -272,11 +275,13 @@ const mptf = (dispatch) => {
           id,
           select: false,
           frame,
+          visible: true,
         },
       });
     },
 
     doUndo: (pointer) => dispatch({ type: "DO_UNDO", data: pointer }),
+    setVisible: ({ id }) => dispatch({ type: "OBJECT_DELETE", data: { id } }),
     // addTextToObjectList:action=>dispatch(action),
     // openObjectOnSelect:({id,select})=>dispatch({type:'OBJECT_LIST_CLOSE', data:{id, isOpen:select}})
   };
