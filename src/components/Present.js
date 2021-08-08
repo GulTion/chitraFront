@@ -33,10 +33,10 @@ export default React.memo(function Present() {
           <h1 className="_2">Requirements</h1>
           <h1 className="_1 _left">
             <h1>{"=>"} Server for backend hosting - replit.com</h1>
-            <h1>{"=>"} DataBase for Save the Drawing and user auth - mongodb</h1>
+            <h1>{"=>"} DataBase for Saving the Drawing and user auth - mongodb</h1>
             <h1>{"=>"} Server for frontend hosting - github pages</h1>
             <h1>{"=>"} Domain for website - name.com</h1>
-            <h1>{"=>"} Needs Lot of Time and Peace Mind!</h1>
+            <h1>{"=>"} Needs Lot of Time and Peace of Mind!</h1>
           </h1>
         </Step>
         <Step data={{x: 5000, y: 3000, scale: 2,rotateX: 90, rotateY: 0, rotateZ:180 }}>
