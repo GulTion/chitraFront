@@ -105,6 +105,7 @@
   scrollbar-width: thin;
   overflow-y: scroll;
   height: 75vh;
+  align-content: flex-start;
 }
 ::-webkit-scrollbar{
   width:10px;
