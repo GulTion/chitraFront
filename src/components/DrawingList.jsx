@@ -92,6 +92,9 @@ export default class DrawingList extends Component {
         {this.state.redirect && <Redirect to="/auth" />}
         <div className="card-body ">
           <h5 className="card-title">{drawing.name}</h5>
+          <div className="d-flex flex-row justify-content-center">
+
+        
           <Link
             className="card-text btn btn-info text-light"
             to={`/drawings/${drawing._id}`}
@@ -104,6 +107,7 @@ export default class DrawingList extends Component {
           >
             DELETE
           </button>
+          </div>
         </div>
         {/* <h6 className="card-footer text-dimmed" onClick={()=>alert(drawing.key)}>
            show key
@@ -204,7 +208,7 @@ export default class DrawingList extends Component {
             />
           </div>
 
-          <div className="d-flex flex-wrap container justify-content-center">
+          <div className="d-flex flex-wrap container justify-content-center DrawingList">
             {drawingList.length ? (
               drawingList
             ) : (

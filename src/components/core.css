@@ -18,10 +18,18 @@
   ) !important;
   color: white;
 }
+.drawingCard{
+  height: max-content;
+
+  border: 5px dashed rgba(255, 255, 255, 0.0);
+}
 .drawingCard .btn {
   background: none;
   border-width: 2px;
   font-weight: 600;
+}
+.drawingCard:hover{
+  border: 5px dashed rgba(255, 255, 255, 0.7);
 }
 
 .drawingCard .card-footer {
@@ -92,4 +100,12 @@
     rgba(255, 255, 255, 0.3) 10px,
     rgba(255, 255, 255, 0.3) 20px
   ) !important;
+}
+.DrawingList{
+  scrollbar-width: thin;
+  overflow-y: scroll;
+  height: 75vh;
+}
+::-webkit-scrollbar{
+  width:10px;
 }

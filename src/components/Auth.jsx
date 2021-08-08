@@ -26,8 +26,8 @@ export default class Auth extends Component {
       const { data } = e;
       if (data.success) {
         localStorage.setItem("id", btoa(data.id))
-        this.setState({ success: true });
-        // window.location.pathname = '/dashboard'
+        // this.setState({ success: true });
+        window.location.pathname = '/dashboard'
         // console.log(data)
       } else {
         alert(data.message);
