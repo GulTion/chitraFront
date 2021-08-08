@@ -21,10 +21,10 @@ export default React.memo(function Present() {
 
         <Step data={{ x: 1000, y: -1000, scale: 5, rotateX: 90, rotateY: 45 }}>
           <h1 className="_1">
-            What is the Features ?
+            What are the Features ?
             <h1>{"=>"} Two or More user can draw at same time !</h1>
-            <h1>{"=>"} Use Very less Internet for Transfering the Data !</h1>
-            <h1>{"=>"} User Can Save Many Drawing as user want !</h1>
+            <h1>{"=>"} Use Very less Internet for  transferring the Data !</h1>
+            <h1>{"=>"} User Can Save as many drawings as user want !</h1>
             <h1>{"=>"} Can Share Drawing to anyone to see and draw !</h1>
           </h1>
         </Step>
@@ -35,7 +35,7 @@ export default React.memo(function Present() {
             <h1>{"=>"} DataBase for Save the Drawing and user auth - mongodb</h1>
             <h1>{"=>"} Server for frontend hosting - github pages</h1>
             <h1>{"=>"} Domain for website - name.com</h1>
-            <h1>{"=>"} Lot of Time and Peace Mind!</h1>
+            <h1>{"=>"}Needs Lot of Time and Peace Mind!</h1>
           </h1>
         </Step>
         <Step data={{x: 5000, y: 3000, scale: 2,rotateX: 90, rotateY: 0, rotateZ:180 }}>
