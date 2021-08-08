@@ -31,7 +31,7 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
-        "prod": "npm run build && rm -r docs/ && mv build docs/ && cd docs && echo 'chitr.gultion.me' > CNAME ",
+        "prod": "npm run build && rm -r docs/ && mv build docs/ && cd docs && echo 'chitr.gulshan.ninja' > CNAME ",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
     },
