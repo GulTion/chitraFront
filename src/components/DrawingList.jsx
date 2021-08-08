@@ -1,8 +1,7 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import NavBar from "./NavBar";
 import {
-  subscribeForDrawings,
   subscribeForDrawingsList,
   createDrawing,
   deleteDrawing,
@@ -201,7 +200,7 @@ export default class DrawingList extends Component {
                 this.setState({
                   query: value,
                   temp: this.state.drawings.filter(
-                    (d) => d.name.toLowerCase().indexOf(value) != -1
+                    (d) => d.name.toLowerCase().indexOf(value) !== -1
                   ),
                 });
               }}

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-const { log } = console;
 class Canvas extends Component {
   state = {
     lastLength: 0,

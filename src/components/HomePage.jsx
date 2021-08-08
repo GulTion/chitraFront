@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import NavBar from "./NavBar";
 import axios from "axios";
 import URL from "../URL";
-import { usePost } from "./useFul";
+
 import "./HomePage.css";
 import Present from "./Present";
 

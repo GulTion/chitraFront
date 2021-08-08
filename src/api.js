@@ -3,7 +3,6 @@ import Rx from "rxjs/Rx";
 import URL from "./URL";
 import axios from "axios";
 
-const { log } = console;
 const _key = atob(localStorage.getItem("id"));
 const socket = openSocket(URL);
 

@@ -5,9 +5,7 @@ import { Redirect } from "react-router-dom";
 import URL from "../URL";
 import NavBar from "./NavBar";
 import "./core.css";
-import store from "./store";
 
-const {log} = console
 
 export default class Auth extends Component {
   constructor(props) {

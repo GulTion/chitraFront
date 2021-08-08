@@ -1,4 +1,4 @@
-import {subscribeForDrawings,subscribeForDrawingsList} from "../api"
+import {subscribeForDrawingsList} from "../api"
 
 const {log} = console
 
@@ -7,12 +7,8 @@ const initState = {
 
 }
 
-const drawingListGetter = (state, action)=>{
-    
-}
-
 const drawingReducer = (state=initState, action)=>{
-    const {data} = action;
+
     switch(action.type){
         case 'GET_DRAWING_LIST':
             return new Promise((res, rej)=>{
@@ -23,7 +19,7 @@ const drawingReducer = (state=initState, action)=>{
                     
                 })
             })
-        break;
+
 
         default:
             return state

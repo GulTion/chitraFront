@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { createDrawing } from "../api";
-import NewAdd from "../NewAdd";
+
 
 export default class DrawingForm extends Component {
   state = {

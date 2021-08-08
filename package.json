@@ -6,14 +6,11 @@
     "private": true,
     "dependencies": {
         "@babel/plugin-transform-react-jsx": "^7.14.5",
-        "@excalidraw/excalidraw": "^0.8.0",
         "@testing-library/jest-dom": "^4.2.4",
         "@testing-library/react": "^9.3.2",
         "@testing-library/user-event": "^7.1.2",
         "axios": "^0.21.1",
         "impress-react-component": "^1.0.4",
-        "javascript-time-ago": "^2.3.5",
-        "node-sass": "^6.0.0",
         "react": "^16.12.0",
         "react-dom": "^16.12.0",
         "react-impressjs": "^1.1.0",
@@ -44,7 +41,7 @@
     "browserslist": {
         "production": [
             ">0.2%",
-            "not dead",mv 
+            "not dead",
             "not op_mini all"
         ],
         "development": [

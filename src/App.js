@@ -1,19 +1,18 @@
 import React from "react";
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import "./App.css";
 
-import DrawingForm from "./components/DrawingForm";
-import DrawingList from "./components/DrawingList";
+
 import Drawing from "./components/Drawing";
 import Auth from "./components/Auth";
 
 import HomePage from "./components/HomePage";
 import DashBoard from "./components/DashBoard";
-import NavBar from "./components/NavBar";
+
 import store from "./Reducer/store";
-import ExcaliDraw from "./components/ExcaliDraw";
+
 import db from "./db";
 
 const { log } = console;
@@ -65,12 +64,12 @@ class App extends React.Component {
               }}
             ></Route>
 
-            <Route
+            {/* <Route
               path="/new/drawings/:drawingId"
               render={(e) => (
                 <ExcaliDraw drawingId={e.match.params.drawingId} />
               )}
-            ></Route>
+            ></Route> */}
           </Switch>
         </div>
       </Router>

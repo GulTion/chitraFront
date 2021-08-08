@@ -1,9 +1,7 @@
 import React from "react";
 import DrawingList from "./DrawingList";
 import "./core.css";
-import NavBar from "./NavBar";
 
-import { Link } from "react-router-dom";
 
 class DashBoard extends React.Component {
   render() {

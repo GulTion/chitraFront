@@ -24,6 +24,7 @@
 
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: hue_2 linear 7s infinite;
 }
 
 ._2 {
@@ -45,4 +46,18 @@
     #20bdff,
     #5433ff
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  animation: hue_2 linear 7s infinite;
+}
+._left{
+  text-align: left !important;
+}
+
+@keyframes hue_2{
+  0%{
+    filter: hue-rotate(0deg);
+  }
+  0%{
+    filter: hue-rotate(359deg);
+  }
 }

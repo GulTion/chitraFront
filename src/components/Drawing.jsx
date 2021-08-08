@@ -1,9 +1,8 @@
-import React, { Component, useState } from "react";
+import React, { Component} from "react";
 import Canvas from "./Canvas";
 import {
   publishLine,
   subscribeForPublishLine,
-  getDrawingById,
   subscribeForAllPublishLine,
 } from "../api";
 import { Link } from "react-router-dom";
@@ -14,7 +13,7 @@ import "./core.css";
 
 import NavBar from "./NavBar";
 
-const { log, table } = console;
+const { log } = console;
 export default class Drawing extends Component {
   constructor(props) {
     super(props);
