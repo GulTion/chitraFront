@@ -57,20 +57,13 @@ export default class DrawingList extends Component {
       });
   }
 
-  componentDidMount() {
-    // subscribeForDrawings((drawing) => {     log('drawing is added') log(drawing)
-    //    if(drawing.operationType=="insert"){ this.setState(prev => ({
-    // drawings: [drawing.fullDocument, ...prev.drawings]     }))     }
-    // if(drawing.operationType=="delete"){    this.setState(prev => ({
-    // drawings: prev.drawings.filter(e=>e._id!==drawing.documentKey._id)
-    // }))     } });
-  }
   componentWillMount() {
     axios
       .post(`${URL}/auth/check`, { key: atob(localStorage.getItem("id")) })
       .then((e) => {
         const { data } = e;
         if (data.success) {
+
           this.getAllList();
         } else {
           this.setState({ isAuth: false });
@@ -85,7 +78,6 @@ export default class DrawingList extends Component {
     });
   }
   DrawingElement({ drawing }) {
-    // const [show, setShow] = useState(true)
     return (
       <div className="drawingCard card m-1 w-auto shadow-sm " key={drawing._id}>
         {this.state.redirect && <Redirect to="/auth" />}
@@ -108,9 +100,6 @@ export default class DrawingList extends Component {
           </button>
           </div>
         </div>
-        {/* <h6 className="card-footer text-dimmed" onClick={()=>alert(drawing.key)}>
-           show key
-          </h6> */}
         <h6 className="card-footer text-dimmed">
           {new Date(drawing.timestamp).toLocaleString()}
         </h6>
@@ -135,13 +124,6 @@ export default class DrawingList extends Component {
               className={"btn"}
               onClick={async () => {
                 this.setState({ isNew: true });
-                // let name = prompt("Enter the Drawing Name: ");
-                // let key = prompt("Enter the Drawing Name (leave blank for public): ");
-                // await new Promise((res,rej)=>{
-                //   createDrawing({name,key});
-                //   res()
-                // })
-                // await this.getAllList();
               }}
             >
               + NEW
@@ -166,27 +148,6 @@ export default class DrawingList extends Component {
         </Popup>
         <div>
           {this.state.isAuth ? null : <Redirect to="/auth" />}
-
-          {/* {this.state.isNew && (
-          <div className="row m-1">
-            <div className="col">
-              <div className="form-floating">
-                <input
-                  type="text"
-                  className="form-control"
-                  id="floatingInputGrid"
-                  placeholder="NAME"
-                  value={this.state.name}
-                  onChange={(e) => {
-                    const { value } = e.target;
-                    this.setState({ name: value });
-                  }}
-                />
-                <label for="floatingInputGrid">New Drawing Name</label>
-              </div>
-            </div>
-          </div>
-        )} */}
 
           <div className="container mb-2 form">
             <input

@@ -24,14 +24,8 @@ export default class DrawingForm extends Component {
             placeholder="Search Drawing"
             onChange={(evt) => this.setState({ name: evt.target.value })}
           />
-          {/* <input type="submit" value={this.state.submitButtonTitle} onClick={e=>{
-                        this.setState({
-                            submitButtonTitle:!this.state.isNew?"CANCEL":"NEW",
-                            isNew:!this.state.isNew
-                        })
-                    }}/> */}
+        
         </div>
-        {/* {this.state.isNew?<NewAdd save={()=>this.setState({isNew:false, submitButtonTitle:!this.state.isNew?"CANCEL":"NEW",})}/>:null} */}
       </div>
     );
   }
