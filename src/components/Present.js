@@ -6,7 +6,8 @@ export default React.memo(function Present() {
     <div className="Present">
       <Impress>
         <Step data={{ x: 0, y: 0 }}>
-          <h1 className="_1">What is Chitr?
+        <h1 className="_2 ">What is Chitr?</h1>
+          <h1 className="_1">
           <h1>Drawing Collaboration Tool for RealTime Drawing! ✏</h1>
           </h1>
          
@@ -22,8 +23,8 @@ export default React.memo(function Present() {
         </Step>
 
         <Step data={{ x: 1000, y: -1000, scale: 5, rotateX: 90, rotateY: 45 }}>
-          <h1 className="_1">
-            What are the Features ?
+        <h1 className="_2 "> What are the Features ?</h1>
+          <h1 className="_1 _left">
             <h1>{"=>"} Two or More user can draw at same time !</h1>
             <h1>{"=>"} Use Very less Internet for  transferring the Data !</h1>
             <h1>{"=>"} User Can Save as many drawings as user want !</h1>
