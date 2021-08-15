@@ -4,8 +4,9 @@ import URL from "./URL";
 import axios from "axios";
 
 const _key = atob(localStorage.getItem("id"));
+const token =()=>atob(localStorage.getItem("id"));
 const socket = openSocket(URL);
-
+let firstTime = true;
 // const subscribeForDrawings = (cb) => {
 
 //     socket.on(`drawing:${_key}`, drawing => cb(drawing));
@@ -86,14 +87,27 @@ const pushChange = (drawingId, data)=>{
 }
 const subscribeForFabric = (drawingId, cb)=>{
 
-  socket.on(`hereMyCanvas:${drawingId}`, (data)=>{
-    document.canvas.loadFromJSON(data)
-  })
+ 
   socket.on(`giveMeCanvas:${drawingId}`, (id)=>{
     console.log("data")
       socket.emit(`takeMyCanvas`, {id:id,canvas:document.canvas.toJSON(['id'])})
   })
+  socket.on(`hereMyCanvas:${drawingId}`, (data)=>{
+    if(firstTime){
+      if(data.from=="server"){
+        document.canvas.loadFromJSON(data.json)
+      }
+      else if(data.from=="socket"){
+        document.canvas.loadFromJSON(data.json)
+        firstTime=false
+      }
+    }
+  })
   socket.emit(`subscribeForFabric`, {drawingId})
+}
+
+const saveChitr = ({drawingId, json})=>{
+  socket.emit("saveChitr", {drawingId,json, key:token()})
 }
 
 
@@ -108,5 +122,6 @@ export {
   deleteDrawing,
   pullChange,
   pushChange,
-  subscribeForFabric
+  subscribeForFabric,
+  saveChitr
 };

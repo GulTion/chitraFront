@@ -1,7 +1,7 @@
 import React from "react"
 import uuid from "uuid-random"
 import { fabric } from "fabric";
-import {pushChange,pullChange,subscribeForFabric} from "../../api"
+import {pushChange,saveChitr} from "../../api"
 import I from "../ico/"
 import { useState } from "react";
 import { useRef } from "react";
@@ -64,7 +64,7 @@ const shapeAdd = {
 }
 
 
-function ToolBar(){
+function ToolBar({isAuth}){
     const [isDraw, setDraw] = useState(false);
     const colorRef = useRef()
     return  <div className="ToolBar" >
@@ -90,13 +90,30 @@ function ToolBar(){
         colorRef.current.click()
     }}>
     <img src={I.Fill}/>
+    <input ref={colorRef} style={{width:"0px",height:"0px",border:"0px", opacity:"0"}} type="color" onChange={(e)=>{
+        let {canvas} = document;
+        if(canvas){
+            let now = canvas.getActiveObject();
+            if(now){
+                now.set({fill:e.target.value})
+                
+                pushChange(did, {id:now.id, fill:e.target.value, cmd:"modified"})
+            }else{
+                canvas.set({backgroundColor:e.target.value})
+                pushChange(did, {fill:e.target.value, cmd:"changeCanvasColor"})
+            }
+            canvas.renderAll()
+        }
+    }} />
     </div>
 
+
+{isAuth&&
     <div className="Tab" onClick={()=>{
-       
+        saveChitr({drawingId:did, json:document.canvas.toJSON(['id'])})
     }}>
     <img src={I.Save}/>
-    </div>
+    </div>}
 
     <div className="Tab" onClick={function(){
             let a = document.createElement("a");
@@ -111,17 +128,7 @@ function ToolBar(){
     </div>
 
 
-    <input ref={colorRef} style={{width:"0px",height:"0px",border:"0px", opacity:"0"}} type="color" onChange={(e)=>{
-        let {canvas} = document;
-        if(canvas){
-            let now = canvas.getActiveObject();
-            if(now){
-                now.set({fill:e.target.value})
-                canvas.renderAll()
-                pushChange(did, {id:now.id, fill:e.target.value, cmd:"modified"})
-            }
-        }
-    }} />
+    
 
 </div>
 }

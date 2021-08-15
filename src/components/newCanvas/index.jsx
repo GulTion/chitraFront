@@ -5,6 +5,8 @@ import React, {useRef, useEffect} from "react"
 import uuid from "uuid-random"
 import {pushChange,pullChange,subscribeForFabric} from "../../api"
 import ToolBar from "./ToolBar";
+import { useState } from "react";
+import axios from "axios"
 const {log} = console
 
 const did = window.location.href.split("/").pop()
@@ -15,6 +17,9 @@ function NewCanvas(){
     let height =()=> _width>_height?_height:_width/1.7777777;
     let width =()=> _width>_height?_height*1.77777777:_width;
     const cvs = useRef();
+
+    const [isAuth, setAuth] = useState(false);
+    const [isValid, setValid] = useState(false);
     
     useEffect(()=>{
         let canvas = new fabric.Canvas(cvs.current,{
@@ -24,12 +29,12 @@ function NewCanvas(){
             height:640/1.7777,
             backgroundColor:"white"
         });
-
+        document.canvas = canvas
         subscribeForFabric(did, ()=>{})
 
-        canvas.on("object:modified",(e)=>{
-            pushChange(did, {...e.target.toJSON(['id']), cmd:"modified"})
-        })
+        // canvas.on("object:modified",(e)=>{
+        //     pushChange(did, {...e.target.toJSON(['id']), cmd:"modified"})
+        // })
 
         canvas.on("object:moving", (e)=>{
             let {top, left, id} = e.target.toJSON(['id'])
@@ -88,6 +93,9 @@ function NewCanvas(){
                     }
                 })
             }
+            else if(get.cmd==="changeCanvasColor"){
+                canvas.set({backgroundColor:get.fill})
+            }
             canvas.renderAll()
             
         })
@@ -95,7 +103,7 @@ function NewCanvas(){
 
  
        
-        document.canvas = canvas
+        
 
         // let _text = new fabric.IText("Here is Tex", {top:100, left:100, width:100})
         // let _box = new fabric.Rect({top:100, left:100, width:100,height:50, fill:"grey"})
@@ -112,17 +120,37 @@ function NewCanvas(){
         //     canvas.setDimensions({width:width()*0.9, height:height()*0.9})
         //     canvas.renderAll()
         // }
+        axios
+        .post(`/auth/check`, { key: atob(localStorage.getItem("id")) })
+        .then((e) => {
+          const { data } = e;
+          if (data.success) {
+  
+            setAuth(true)
+          } else {
+            setAuth(false)
+          }
+        });
 
-
-
-
+        // axios.post(`/drawing/get`, { id:did }).then((e) => {
+        //     const {data} = e
+        //     log(data)
+        //     if (data.success) {
+        //       setValid(true)
+        //       document.title = `${data.name} - Chitr`;
+        //     } else {
+        //       setValid(false)
+        //     }
+        //   });
        
-
-        log(canvas)
     },[])
     return <div className="NewCanvas" >
-       <ToolBar />
+        
+      
+        <ToolBar isAuth={isAuth}/>
         <canvas  id="_newCanvas" ref={cvs}></canvas>
+   
+      
     </div>
 }
 
