@@ -17,6 +17,10 @@ const subscribeForDrawingsList = (cb) => {
   socket.emit("subscribeForDrawingList", { key: _key });
 };
 
+
+
+
+
 const createDrawing = async ({ name, key }) => {
   await socket.emit("createDrawing", { name, key: key, user: _key });
 };
@@ -67,6 +71,32 @@ const deleteDrawing = (id, cb) => {
   });
 };
 
+
+
+
+const pullChange = (drawingId,cb) => {
+  socket.on(`pullChange:${drawingId}`, data=>{
+    cb(data)
+  })
+};
+
+
+const pushChange = (drawingId, data)=>{
+  socket.emit(`pushChange`, {drawingId, data})
+}
+const subscribeForFabric = (drawingId, cb)=>{
+
+  socket.on(`hereMyCanvas:${drawingId}`, (data)=>{
+    document.canvas.loadFromJSON(data)
+  })
+  socket.on(`giveMeCanvas:${drawingId}`, (id)=>{
+    console.log("data")
+      socket.emit(`takeMyCanvas`, {id:id,canvas:document.canvas.toJSON(['id'])})
+  })
+  socket.emit(`subscribeForFabric`, {drawingId})
+}
+
+
 export {
   // subscribeForDrawings,
   createDrawing,
@@ -76,4 +106,7 @@ export {
   subscribeForDrawingsList,
   subscribeForAllPublishLine,
   deleteDrawing,
+  pullChange,
+  pushChange,
+  subscribeForFabric
 };

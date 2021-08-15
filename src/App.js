@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 
 
+import NewCanvas from "./components/newCanvas/";
+
 import Drawing from "./components/Drawing";
 import Auth from "./components/Auth";
 
@@ -70,6 +72,12 @@ class App extends React.Component {
                 <ExcaliDraw drawingId={e.match.params.drawingId} />
               )}
             ></Route> */}
+
+            <Route  path="/new/drawings/:drawingId" render={(e) => (
+                <NewCanvas drawingId={e.match.params.drawingId} />
+              )}>
+            
+            </Route>
           </Switch>
         </div>
       </Router>
