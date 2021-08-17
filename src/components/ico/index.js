@@ -12,8 +12,9 @@ import Text from "./text.svg"
 import Save from "./upload-cloud-2-fill.svg"
 import Fill from "./fill.svg"
 import Share from "./share.svg"
+import Grouping from "./grouping.svg"
 
-const I = {Circle, Rect, Cursor, Remove, Download, Erase, FontColor,Fill,Share,
+const I = {Circle, Rect, Cursor, Remove, Download, Erase, FontColor,Fill,Share,Grouping,
 Lock, Unlock, Pencil, Text, Save}
 
 export default I

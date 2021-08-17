@@ -60,6 +60,9 @@ function NewCanvas() {
       log(e.path);
       pushChange(did, { ...e.path.toJSON(["id"]), cmd: "add" });
     });
+    canvas.on("object:added", (e)=>[
+      e.target.set({padding:5, cornerSize:10, borderColor:"rgba(0,0,0,0.3)", cornerColor:"rgb(255,255,255)", cornerStrokeColor:"rgba(0,0,0,0.3)", cornerStyle:"circle"})
+    ])
     // canvas.on("mouse:move", (e)=>{
     //   let {x, y} = e.pointer;
     //   log({x:x*canvas.getZoom(),y:y*canvas.getZoom()})
@@ -103,6 +106,15 @@ function NewCanvas() {
       else if(get.cmd==="zoom"){
         canvas.zoomToPoint(get.canvas.offset, get.canvas.zoom);
         canvas.viewportTransform = get.viewport
+      }
+      else if(get.cmd==="grouping"){
+        let objects = canvas.getObjects().filter(e=>{
+          for(let i=0;i<get.ids.length;i++){
+            if(get.ids[i]===e.id) return e
+          }
+        })
+        canvas.add(new fabric.Group(objects, {id:get.id,top:get.top, left:get.left, top:get.top}))
+        objects.forEach(e=>canvas.remove(e))
       }
       canvas.renderAll();
     });

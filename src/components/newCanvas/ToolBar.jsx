@@ -157,6 +157,25 @@ function ToolBar({ isAuth, isValid }) {
           onChange={shapeAdd.colorChange}
         />
       </div>
+
+      <div
+        className="Tab"
+        title="Select the Shapes, and Click me to Grouping the Shapes into one"
+        onClick={() => {
+         let {_objects:objects, top, left} = document.canvas.getActiveObject();
+         let ids = objects.map(e=>e.id);
+         let id = uuid()
+         if(ids.length){
+           document.canvas.add(new fabric.Group(objects, {id,top,left}))
+           objects.forEach(e=>document.canvas.remove(e))
+           pushChange(did, {cmd:"grouping", ids, id,top,left})
+           document.canvas.renderAll()
+         }
+        }}
+      >
+        <img alt={"img"} src={I.Grouping} />
+    
+      </div>
  
         <div
         title="Save the Current State of Drawing to Server"
