@@ -15,7 +15,6 @@ const shapeAdd = {
     canvas.renderAll();
   },
   addRect: function () {
-    let { canvas } = document;
     let rect = new fabric.Rect({
       top: 100,
       left: 100,
@@ -31,7 +30,6 @@ const shapeAdd = {
   },
 
   addCircle: function () {
-    let { canvas } = document;
     let circ = new fabric.Circle({
       top: 100,
       left: 100,
@@ -102,14 +100,14 @@ const shapeAdd = {
 };
 
 const LineSizeTab = ({onChange})=>{
-  const [now ,setNow] = useState([1,2,5,7].findIndex(e=>e==document.canvas.freeDrawingBrush.width))
+  const [now ,setNow] = useState([1,2,5,7].findIndex(e=>e===document.canvas.freeDrawingBrush.width))
   return <div className="__Tab">
       {[1,2,5,7].map((e,i)=>{
           return <div onClick={()=>{
             setNow(i);
             onChange(i)
             document.canvas.freeDrawingBrush.width = e
-          }} className={`_Tab ${now===i&&"_Tab_Active"}`}>{e}</div>
+          }} title={now===i?`Selected Pencil Size`:`Select ${e} Size`} className={`_Tab ${now===i&&"_Tab_Active"}`}>{e}</div>
       })}
   </div>
 }
@@ -119,37 +117,39 @@ function ToolBar({ isAuth, isValid }) {
   const colorRef = useRef();
   return (
     <div className="ToolBar" >
-      <div className="Tab" onClick={() => shapeAdd.addRect()}>
-        <img src={I.Rect} />
+      <div title="Add a Rectangle" className="Tab" onClick={() => shapeAdd.addRect()}>
+        <img alt={"img"} src={I.Rect} />
       </div>
-      <div className="Tab" onClick={() => shapeAdd.addCircle()}>
-        <img src={I.Circle} />
+      <div title="Add a Circle" className="Tab" onClick={() => shapeAdd.addCircle()}>
+        <img alt={"img"} src={I.Circle} />
       </div>
-      <div className="Tab" onClick={() => shapeAdd.addText()}>
-        <img src={I.Text} />
+      <div title="Add a Text" className="Tab" onClick={() => shapeAdd.addText()}>
+        <img alt={"img"} src={I.Text} />
       </div>
-      <div
+      <div title={isDraw?"Use Default Cursor":"Draw using Pencil"}
         className="Tab"
         onClick={() => shapeAdd.addDraw({ setDraw: (e) => setDraw(e) })}
       >
-        <img src={!isDraw ? I.Pencil : I.Cursor} />
+        <img alt={"img"} src={!isDraw ? I.Pencil : I.Cursor} />
 
       </div>
     {isDraw&&<LineSizeTab onChange={()=>{}}/>}
       <div
         className="Tab"
+        title="Select the Shape, and Click me to Delete the Shape or Pencil Draw or Text"
         onClick={() => shapeAdd.delete({ setDraw: (e) => setDraw(e) })}
       >
-        <img src={I.Remove} />
+        <img alt={"img"} src={I.Remove} />
       </div>
       
       <div
         className="Tab"
+        title="Select the Shape, and Click me to Change color of Shape or Text or fill the Draw"
         onClick={() => {
           colorRef.current.click();
         }}
       >
-        <img src={I.Fill} />
+        <img alt={"img"} src={I.Fill} />
         <input
           ref={colorRef}
           style={{ width: "0px", height: "0px", border: "0px", opacity: "0" }}
@@ -159,17 +159,19 @@ function ToolBar({ isAuth, isValid }) {
       </div>
  
         <div
+        title="Save the Current State of Drawing to Server"
           className="Tab"
           onClick={() => {
             saveChitr({ drawingId: did, json: document.canvas.toJSON(["id"]) });
           }}
         >
-          <img src={I.Save} />
+          <img alt={"img"} src={I.Save} />
         </div>
     
 
       <div
         className="Tab"
+        title="Download the Current Drawing on Your Device"
         onClick={function () {
           let a = document.createElement("a");
           a.href = document.canvas.toDataURL({
@@ -180,11 +182,12 @@ function ToolBar({ isAuth, isValid }) {
           a.click();
         }}
       >
-        <img src={I.Download} />
+        <img alt={"img"} src={I.Download} />
       </div>
 
       <div
         className="Tab"
+        title="Button to Share the Current Drawing to Others"
         onClick={() => {
           const el = document.createElement("textarea");
           el.value = document.location.href;
@@ -196,7 +199,7 @@ function ToolBar({ isAuth, isValid }) {
           alert(`URL is Copied in Clipboard , paste to share to anybody !`);
         }}
       >
-        <img src={I.Share} />
+        <img alt={"img"} src={I.Share} />
       </div>
     </div>
   );

@@ -4,7 +4,6 @@ import React, { useRef, useEffect } from "react";
 import uuid from "uuid-random";
 import { pushChange, pullChange, subscribeForFabric } from "../../api";
 import ToolBar from "./ToolBar";
-import { useState } from "react";
 import axios from "axios";
 import URL from "../../URL";
 const { log } = console;
@@ -12,21 +11,25 @@ const { log } = console;
 const did = window.location.href.split("/").pop();
 
 function NewCanvas() {
-  let _width = document.body.clientWidth;
-  let _height = document.body.clientHeight;
-  let height = () => (_width > _height ? _height : _width / 1.7777777);
-  let width = () => (_width > _height ? _height * 1.77777777 : _width);
+
   const cvs = useRef();
 
-  const [isAuth, setAuth] = useState(false);
-  const [isValid, setValid] = useState(false);
+
 
   useEffect(() => {
+    const WH = ()=>{
+      let realHeight = document.body.clientHeight - document.querySelector(".ToolBar").getBoundingClientRect().height;
+      let realWidth = document.body.clientWidth;
+      let newRatio = realWidth/realHeight
+      log({realWidth,realHeight})
+      if(1.77777777<newRatio){
+        return {height:realHeight*0.9, width:realHeight*1.777777777*0.9}
+      }else{
+       return {height:realWidth/1.777777777*0.9, width:realWidth*0.9}
+      }
+    }
     let canvas = new fabric.Canvas(cvs.current, {
-      // width:width()*0.9,
-      // height:height()*0.9
-      width: 640,
-      height: 640 / 1.7777,
+      width:WH().width,height:WH().height,
       backgroundColor: "white",
     });
     document.canvas = canvas;
@@ -37,7 +40,7 @@ function NewCanvas() {
 
     canvas.on("object:modified",(e)=>{
       const {id,type} = e.target.toJSON(['id'])
-        pushChange(did, {id, selectable:true,stroke:type=="path"?"black":"", cmd:"modified"})
+        pushChange(did, {id, selectable:true,stroke:type==="path"?"black":"", cmd:"modified"})
     })
 
     canvas.on("object:moving", (e) => {
@@ -62,7 +65,7 @@ function NewCanvas() {
       log(get);
 
       if (get.cmd === "add") {
-        if (get.type == "rect") {
+        if (get.type === "rect") {
           canvas.add(new fabric.Rect(get));
         } else if (get.type === "circle") {
           canvas.add(new fabric.Circle(get));
@@ -73,20 +76,20 @@ function NewCanvas() {
         }
       } else if (get.cmd === "modified") {
         canvas._objects.forEach((e) => {
-          if (e.id == get.id) {
+          if (e.id === get.id) {
             
             e.set(get);
           }
         });
       } else if (get.cmd === "text") {
         canvas._objects.forEach((e) => {
-          if (e.id == get.id) {
+          if (e.id === get.id) {
             e.set({ text: get.text });
           }
         });
       } else if (get.cmd === "delete") {
         canvas._objects.forEach((e) => {
-          if (e.id == get.id) {
+          if (e.id === get.id) {
             canvas.remove(e);
           }
         });
@@ -158,26 +161,11 @@ function NewCanvas() {
     // let _group = new fabric.Group([_text, _box], {top:200, left:200});
     // canvas.add(_group)
     // canvas.renderAll()
-
-    // window.onload = window.onresize=()=>{
-    // _width = document.body.clientWidth
-    //  _height = document.body.clientHeight
-    //  height =()=> _width>_height?_height:_width/1.7777777;
-    //  width =()=> _width>_height?_height*1.77777777:_width;
-    //     log({width:width(), height:height()})
-    //     canvas.setDimensions({width:width()*0.9, height:height()*0.9})
-    //     canvas.renderAll()
-    // }
-    axios
-      .post(`${URL}/auth/check`, { key: atob(localStorage.getItem("id")) })
-      .then((e) => {
-        const { data } = e;
-        if (data.success) {
-          setAuth(true);
-        } else {
-          setAuth(false);
-        }
-      });
+   
+    window.onload = window.onresize=()=>{
+      canvas.setDimensions({height:WH().height, width:WH().width})
+    }
+  
 
     axios.post(`${URL}/drawing/get`, { id:did }).then((e) => {
         const {data} = e
@@ -194,7 +182,7 @@ function NewCanvas() {
   return (
     <div className="NewCanvas">
       <ToolBar />
-      <canvas id="_newCanvas" style={{border:`2px solid ${document.color}`}} ref={cvs}></canvas>
+      <canvas id="_newCanvas" style={{border:`2px solid ${document.color}`,width:"100%", height:"100%"}} ref={cvs}></canvas>
     </div>
   );
 }

@@ -95,10 +95,10 @@ const subscribeForFabric = (drawingId, cb)=>{
   })
   socket.on(`hereMyCanvas:${drawingId}`, (data)=>{
     if(firstTime){
-      if(data.from=="server"){
+      if(data.from==="server"){
         document.canvas.loadFromJSON(data.json)
       }
-      else if(data.from=="socket"){
+      else if(data.from==="socket"){
         document.canvas.loadFromJSON(data.json)
         firstTime=false
       }
