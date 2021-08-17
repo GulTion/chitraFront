@@ -178,7 +178,7 @@ function ToolBar({ isAuth, isValid }) {
             format: "jpeg",
             quality: 1.0,
           });
-          a.download = "canvas.png";
+          a.download = document.title+" "+new Date().toLocaleString()+".jpeg";
           a.click();
         }}
       >

@@ -60,6 +60,10 @@ function NewCanvas() {
       log(e.path);
       pushChange(did, { ...e.path.toJSON(["id"]), cmd: "add" });
     });
+    // canvas.on("mouse:move", (e)=>{
+    //   let {x, y} = e.pointer;
+    //   log({x:x*canvas.getZoom(),y:y*canvas.getZoom()})
+    // })
 
     pullChange(did, (get) => {
       log(get);
@@ -96,6 +100,10 @@ function NewCanvas() {
       } else if (get.cmd === "changeCanvasColor") {
         canvas.set({ backgroundColor: get.fill });
       }
+      else if(get.cmd==="zoom"){
+        canvas.zoomToPoint(get.canvas.offset, get.canvas.zoom);
+        canvas.viewportTransform = get.viewport
+      }
       canvas.renderAll();
     });
 
@@ -125,6 +133,9 @@ function NewCanvas() {
           vpt[5] = canvas.getHeight() - 1000 * zoom;
         }
       }
+
+      pushChange(did, {cmd:"zoom", canvas:{offset:{ x: opt.e.offsetX, y: opt.e.offsetY }, zoom},viewport:vpt})
+
     });
 
     //pan
@@ -171,7 +182,7 @@ function NewCanvas() {
         const {data} = e
         log(data)
         if (data.success) {
-      
+          
           document.title = `${data.name} - Chitr`;
         } else {
           document.title = "NOT FOUND DRAWING";
