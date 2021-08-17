@@ -11,8 +11,9 @@ import Pencil from "./pencil-fill.svg"
 import Text from "./text.svg"
 import Save from "./upload-cloud-2-fill.svg"
 import Fill from "./fill.svg"
+import Share from "./share.svg"
 
-const I = {Circle, Rect, Cursor, Remove, Download, Erase, FontColor,Fill,
+const I = {Circle, Rect, Cursor, Remove, Download, Erase, FontColor,Fill,Share,
 Lock, Unlock, Pencil, Text, Save}
 
 export default I

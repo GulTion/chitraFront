@@ -88,7 +88,8 @@ export default class DrawingList extends Component {
         
           <Link
             className="card-text btn btn-info text-light"
-            to={`/drawings/${drawing._id}`}
+            to={`/new/drawings/${drawing._id}`}
+            target={"_blank"}
           >
             {"Draw"}
           </Link>

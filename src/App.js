@@ -52,7 +52,7 @@ class App extends React.Component {
             </Route>
 
             <Route
-              path="/drawings/:drawingId"
+              path="/drawings/new/:drawingId"
               render={(e) => {
                 return (
                   <>
